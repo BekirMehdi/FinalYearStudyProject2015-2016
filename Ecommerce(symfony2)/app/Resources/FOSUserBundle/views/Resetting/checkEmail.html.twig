@@ -1,0 +1,37 @@
+{% extends "::layout/layoutfront.html.twig" %}  
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block body %}
+ 
+  <div class="breadcrumbs">
+    <div class="container">
+      <div class="row">
+        <ul>
+          <li class="home"> <a title="Aller à la page d'accueil" href="{{ path('produits') }}">Accueil</a><span>&mdash;›</span></li>
+          <li class="category13"><strong>réinitialisation du mot de passe.</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- main-container -->
+  <div class="main-container col2-right-layout major">
+    <div class="main container">
+      <div class="row">
+        <section class="col-main col-sm-9 wow bounceInUp animated">
+          <div class="page-title">
+            <h2>réinitialiser votre mot de passe.</h2>
+          </div>
+            <br />
+            {{ 'resetting.check_email'|trans({'%email%': email}) }}
+        </section>
+        <aside class="col-right sidebar col-sm-3 wow bounceInUp animated">
+          <div class="block block-company">
+            <img alt="offer banner1" src="{{ asset('frontoffice/images/sms.jpg')}}">
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+  <!--End main-container --> 
+{% endblock %}

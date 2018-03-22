@@ -1,0 +1,45 @@
+{% extends '::layout/layoutAdmin.html.twig' %}
+
+{% block body -%}
+<div class="new_title center">
+    <h2>Boutiques</h2>
+</div>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Telephone</th>
+                <th>Adresse</th>
+                <th>Date_creation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ entity.id }}</td>
+                <td>{{ entity.nom }}</td>
+                <td>{{ entity.description }}</td>
+                <td>{{ entity.telephone }}</td>
+                <td>{{ entity.adresse }}</td>
+                <td>{% if entity.datecreation %}{{ entity.datecreation|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>    
+    </table>
+
+    <div class="bouton_button_return">
+         <a href="{{ path('adminBoutiques') }}">
+            Retour à la liste
+        </a>
+    </div> 
+  
+<br>
+    <div class="bouton_button_add">
+        <a href="{{ path('adminBoutiques_edit', { 'id': entity.id }) }}">
+            modifier
+        </a>
+    </div>
+    <br>
+    <div>{{ form(delete_form) }}</div>
+
+{% endblock %}

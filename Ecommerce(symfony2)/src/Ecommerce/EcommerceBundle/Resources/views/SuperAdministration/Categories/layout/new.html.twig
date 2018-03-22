@@ -1,0 +1,15 @@
+{% extends '::layout/layoutSuperAdmin.html.twig' %}
+
+{% block body -%}
+<div class="new_title center">
+    <h2>Creation de Categorie</h2>
+</div>
+    {{ form(form) }}
+
+
+    <div class="bouton_button_return">
+        <a href="{{ path('SuperAdminCategories') }}">
+            Retour à la liste
+        </a>
+    </div>
+{% endblock %}

@@ -1,0 +1,17 @@
+            <div class="popular-posts widget widget__sidebar wow bounceInUp animated" id="recent-posts-4">
+              <h3 class="widget-title">Produits Premium</h3>
+              <div class="widget-content">
+                <ul class="posts-list unstyled clearfix">
+                {% for produitPremium in produitsPremium|slice(0, 2) %}
+                  <li>
+                    <figure class="featured-thumb"> <a href="{{ path('presentationPremium', { 'idP' : produitPremium.id }) }}"> <img width="80" height="53" title="{{ produitPremium.nom }}" src="{{ asset(produitPremium.image.AssetPath) }}"> </a> </figure>
+                    <!--featured-thumb-->
+                    <a title="Pellentesque posuere" href="{{ path('presentationPremium', { 'idP' : produitPremium.id }) }}">{{ produitPremium.nom }}</a><br>
+                    <a title="Pellentesque posuere" href="{{ path('presentationPremium', { 'idP' : produitPremium.id }) }}">{{ produitPremium.marque }}</a><br>
+                    <a title="Pellentesque posuere" href="{{ path('presentationBoutique', { 'idB' : produitPremium.boutique.id }) }}">{{ produitPremium.boutique.nom }}</a>
+                  </li>
+                {% endfor %}
+                </ul>
+              </div>
+              <!--widget-content--> 
+            </div>

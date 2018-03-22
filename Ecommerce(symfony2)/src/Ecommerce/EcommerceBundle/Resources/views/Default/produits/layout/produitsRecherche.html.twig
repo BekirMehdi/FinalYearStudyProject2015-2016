@@ -1,0 +1,99 @@
+{% extends "::layout/layoutfront.html.twig" %}
+
+{% block body %}
+
+
+
+
+<section class="main-container col1-layout home-content-container">
+    <div class="container">
+      <div class="std">
+        <div class="best-seller-pro wow bounceInUp animated">
+          {% if produits|length != 0 %}
+            <div class="slider-items-products">
+                <div class="new_title center">
+              
+                </div>
+                <div id="best-seller-slider" class="product-flexslider hidden-buttons">
+                <div class="slider-items slider-width-col4"> 
+                    {% for produit in produits %}
+                        <div class="item">
+                          <div class="col-item">
+                             {% if produit.disponible == 1  %}
+                                      <div class="sale-label sale-top-right">dispo</div>
+                                    {% endif %} 
+                            <div class="product-image-area"> <a class="product-image" title="{{ produit.nom }}" href="{{ path('presentation', { 'id' : produit.id }) }}"> <img src="{{ asset(produit.image.AssetPath) }}" class="img-responsive" title="{{ produit.nom }}" /> </a>
+                              <div class="hover_fly"> 
+                                                {% if panier[produit.id] is not defined  %}    
+                          {% if produit.disponible!=0 %}
+                            <a class="exclusive ajax_add_to_cart_button" href="{{ path('ajouter', { 'id' : produit.id }) }}" title="Ajouter au panier">
+                              <div><i class="icon-shopping-cart"></i><span>Ajouter au panier</span></div></a> 
+                          {% else %}     
+                            <a class="exclusive ajax_add_to_cart_button" href="{{ path('presentation', { 'id' : produit.id }) }}" title="N'est pas disponible">
+                              <div><i class="icon-shopping-cart"></i><span>N'est pas disponible</span></div></a> 
+                          {% endif %}   
+                        {% else %}
+                        <a class="exclusive ajax_add_to_cart_button" href="{{ path('ajouter', { 'id' : produit.id }) }}" title="Deja en panier">
+                        <div><i class="icon-shopping-cart"></i><span>Deja en panier</span></div></a> 
+                        {% endif %}
+                             <a class="quick-view" href="{{ path('presentation', { 'id' : produit.id }) }}" title="Aperçu rapide">
+                            <div><i class="icon-eye-open"></i><span>Aperçu rapide</span></div>
+                            </a> <a class="add_to_compare" href="{{ path('sousCategorieGridProduits', { 'sousCategorieGrid' : produit.categorieProduit.id }) }}" title="Catégorie">
+                              <div><i class="icon-random"></i><span>Catégorie</span></div>
+                            </a> <a class="addToWishlist wishlistProd_5" href="{{ path('presentationBoutique', { 'idB' : produit.boutique.id }) }}" title="Voir Boutique" >
+                            <div><i class="icon-heart"></i><span>Voir Boutique</span></div>
+                              </a> 
+                              </div>
+                            </div>
+                            <div class="info">
+                              <div class="info-inner">
+                                <div class="item-title">
+                                 {% if panier[produit.id] is not defined %}
+                                 <a title=" Sample Product" href="{{ path('presentation', { 'id' : produit.id }) }}"> {{ produit.nom }} </a> 
+                                  {% endif %}
+                                
+                                   <br>Boutique:
+                                
+                                  {{ produit.boutique.nom }}
+                                  
+                        
+                                
+                                 </div>
+                                <!--item-title-->
+                                <div class="item-content">
+                                  
+                                  <div class="price-box">
+                                    <p class="special-price"> <span class="price"> {{ produit.prixremise|tva(produit.tva.tauxtva) }} dt</span> </p>
+                                    <p class="old-price"> <span class="price-sep">-</span> <span class="price"> 
+                                    <p class="special-price"> <span class="price"> {{ produit.prix|tva(produit.tva.tauxtva) }} dt </span> </p>
+                                  </div>
+                                </div>
+                                <!--item-content--> 
+                              </div>
+                              <!--info-inner-->
+                              
+                              <div class="clearfix"> </div>
+                            </div>
+                          </div>
+                        </div>
+                    {% endfor %}                
+                     <div class="navigation">
+                      
+                    </div>  
+
+                </div>  
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    {% else %}
+Aucun produit
+{% endif %} 
+</section>
+
+
+
+            
+ 
+{% endblock %}

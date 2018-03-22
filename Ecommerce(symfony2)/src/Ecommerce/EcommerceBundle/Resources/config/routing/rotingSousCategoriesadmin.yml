@@ -1,0 +1,30 @@
+adminSousCategories:
+    path:     /
+    defaults: { _controller: "EcommerceBundle:SousCategoriesAdmin:index" }
+
+adminSousCategories_show:
+    path:     /{id}/show
+    defaults: { _controller: "EcommerceBundle:SousCategoriesAdmin:show" }
+
+adminSousCategories_new:
+    path:     /new
+    defaults: { _controller: "EcommerceBundle:SousCategoriesAdmin:new" }
+
+adminSousCategories_create:
+    path:     /create
+    defaults: { _controller: "EcommerceBundle:SousCategoriesAdmin:create" }
+    requirements: { _method: post }
+
+adminSousCategories_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "EcommerceBundle:SousCategoriesAdmin:edit" }
+
+adminSousCategories_update:
+    path:     /{id}/update
+    defaults: { _controller: "EcommerceBundle:SousCategoriesAdmin:update" }
+    requirements: { _method: post|put }
+
+adminSousCategories_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "EcommerceBundle:SousCategoriesAdmin:delete" }
+    requirements: { _method: post|delete }

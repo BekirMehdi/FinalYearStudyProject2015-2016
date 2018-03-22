@@ -1,0 +1,93 @@
+routingAboutUs:
+    resource: "@EcommerceBundle/Resources/config/routing/routingAboutUs.yml"
+    prefix:   /aboutUs
+
+routingContactUs:
+    resource: "@EcommerceBundle/Resources/config/routing/routingContactUs.yml"
+    prefix:   /ContactUs
+
+routingBoutiquesPremiumSuperAdmin:
+    resource: "@EcommerceBundle/Resources/config/routing/routingBoutiquesPremiumSuperAdmin.yml"
+    prefix:   /superAdmin/boutiquesPremium
+
+routingProduitsPremiumSuperAdmin:
+    resource: "@EcommerceBundle/Resources/config/routing/routingProduitsPremiumSuperAdmin.yml"
+    prefix:   /superAdmin/produitsPremium
+
+rotingSousCategoriesadmin:
+    resource: "@EcommerceBundle/Resources/config/routing/rotingSousCategoriesadmin.yml"
+    prefix:   /superAdmin/sousCategories
+
+
+routinginformationsSuperAdmin:
+    resource: "@EcommerceBundle/Resources/config/routing/routinginformationsSuperAdmin.yml"
+    prefix:   /superAdmin/informations
+
+routingTvaAdmin:
+    resource: "@EcommerceBundle/Resources/config/routing/routingTvaAdmin.yml"
+    prefix:   /admin/tva
+
+routingBoutiquesAdmin:
+    resource: "@EcommerceBundle/Resources/config/routing/routingBoutiquesAdmin.yml"
+    prefix:   /admin/boutiques
+
+routingBoutiquesSuperAdmin:
+    resource: "@EcommerceBundle/Resources/config/routing/routingBoutiquesSuperAdmin.yml"
+    prefix:   /superAdmin/boutiques
+
+routingAdmin:
+  resource: "@EcommerceBundle/Resources/config/routing/routingAdmin.yml"
+  prefix: /admin
+
+routingSuperAdmin:
+  resource: "@EcommerceBundle/Resources/config/routing/routingSuperAdmin.yml"
+  prefix: /superAdmin  
+
+routingPanier:
+  resource: "@EcommerceBundle/Resources/config/routing/routingPanier.yml"
+  prefix: /panier
+
+routingProduits:
+  resource: "@EcommerceBundle/Resources/config/routing/routingProduits.yml"
+  prefix: /
+
+routingBoutiques:
+  resource: "@EcommerceBundle/Resources/config/routing/routingBoutiques.yml"
+  prefix: /
+
+routingProduitsAdmin:
+    resource: "@EcommerceBundle/Resources/config/routing/routingProduitsAdmin.yml"
+    prefix:   /admin/produits
+
+routingProduitsSuperAdmin:
+    resource: "@EcommerceBundle/Resources/config/routing/routingProduitsSuperAdmin.yml"
+    prefix:   /superAdmin/produits
+
+routingCategoriesAdmin:
+    resource: "@EcommerceBundle/Resources/config/routing/routingCategoriesAdmin.yml"
+    prefix:   /admin/categories
+  
+routingCategoriesSuperAdmin:
+    resource: "@EcommerceBundle/Resources/config/routing/routingCategoriesSuperAdmin.yml"
+    prefix:   /superAdmin/categories
+
+routingCommandesAdmin:
+  resource: "@EcommerceBundle/Resources/config/routing/routingCommandesAdmin.yml"
+  prefix: /admin/commandes
+
+routingCommandesSuperAdmin:
+  resource: "@EcommerceBundle/Resources/config/routing/routingCommandesSuperAdmin.yml"
+  prefix: superAdmin/commandes  
+
+routingMessagesSuperAdmin:
+  resource: "@EcommerceBundle/Resources/config/routing/routingMessagesSuperAdmin.yml"
+  prefix: superAdmin/messages    
+
+routingCommandes:
+  resource: "@EcommerceBundle/Resources/config/routing/routingCommandes.yml"
+  prefix: /
+
+
+rechercheProduits:
+    pattern:  /recherche
+    defaults: { _controller: EcommerceBundle:Produits:rechercheTraitement }  

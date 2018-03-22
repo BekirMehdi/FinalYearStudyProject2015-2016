@@ -1,0 +1,30 @@
+h1 {
+    position:absolute;
+    color:#0088cc;
+    font-size:50px;
+}
+
+.center {
+    text-align:center;
+}
+
+.color {
+    color:#0088cc;
+}
+
+img.displayed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto }
+
+.container {
+    background-color: #fff;
+    min-height: 400px;
+    padding: 20px 0 0px;
+}
+#footer { 
+    position:absolute;
+    bottom:0px;width:100%;
+    text-align:center;
+    line-height:25px;
+}

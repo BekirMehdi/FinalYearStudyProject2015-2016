@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
+<head>
+<meta charset="utf-8">
+<title>e-boutique</title>
+
+<!-- Favicons Icon -->
+<link rel="icon" type="image/x-icon" href="{{ asset('f.ico') }}" />
+
+
+<!-- Mobile Specific -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<!-- CSS Style -->
+
+<link rel="stylesheet" href="{{ asset('frontoffice/css/animate.css')}}" type="text/css">
+<link rel="stylesheet" href="{{ asset('frontoffice/bootstrap-3.3.1/dist/css/bootstrap.min.css')}}">
+<link rel="stylesheet" href="{{ asset('frontoffice/css/style.css')}}" type="text/css">
+<link rel="stylesheet" href="{{ asset('frontoffice/css/exeption.css')}}" type="text/css">
+<link rel="stylesheet" href="{{ asset('frontoffice/css/revslider.css')}}" type="text/css">
+<link rel="stylesheet" href="{{ asset('frontoffice/css/owl.carousel.css')}}" type="text/css">
+<link rel="stylesheet" href="{{ asset('frontoffice/css/owl.theme.css')}}" type="text/css">
+<link rel="stylesheet" href="{{ asset('frontoffice/css/font-awesome.css')}}" type="text/css">
+<link rel="stylesheet" href="{{ asset('frontoffice/css/blogmate.css')}}" type="text/css">
+
+
+<!-- Google Fonts -->
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,300,700,800,400,600' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+<div class="page"> 
+  <!-- Header -->
+  <header class="header-container">
+    <div class="header-top">
+      <div class="container">
+        <div class="row"> 
+          <!-- Header Language -->
+          <div class="col-xs-6">
+            <div class="dropdown block-language-wrapper"> <a role="button" data-toggle="dropdown" data-target="#" class="block-language dropdown-toggle" href="#"> <img src="{{ asset('frontoffice/images/english.png')}}" alt="language"> English <span class="caret"></span> </a>
+              <ul class="dropdown-menu" role="menu">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="{{ asset('frontoffice/images/english.png')}}" alt="language"> English </a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="{{ asset('frontoffice/images/francais.png')}}" alt="language"> French </a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="{{ asset('frontoffice/images/german.png')}}" alt="language"> German </a></li>
+              </ul>
+            </div>
+            
+            <!-- End Header Language --> 
+            
+            <!-- Header Currency -->
+            <div class="dropdown block-currency-wrapper"> <a role="button" data-toggle="dropdown" data-target="#" class="block-currency dropdown-toggle" href="#"> USD <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"> $ - Dollar </a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"> £ - Pound </a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"> € - Euro </a></li>
+              </ul>
+            </div>
+            
+            <!-- End Header Currency -->
+            
+            <div class="welcome-msg hidden-xs"> Default welcome msg! </div>
+          </div>
+          <div class="col-xs-6">
+            
+            <!-- Header Top Links --> 
+            <div class="toplinks">
+              <div class="links">
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                {% include 'UtilisateursBundle:Default:modulesUsed/utilisateursConnecte1.html.twig' %}   
+                {% else %}
+                {% include 'UtilisateursBundle:Default:modulesUsed/utilisateurs.html.twig' %}   
+                {% endif %}
+                <div ><a title="Aide"  href="{{ path('aidePDF') }}" target="_blank"><span class="
+                glyphicon glyphicon-question-sign">Aide</span></a></div>
+              </div>
+            </div>
+            <!-- End Header Top Links --> 
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="header container">
+      <div class="row">
+        <div class="col-lg-2 col-sm-3 col-md-2"> 
+          <!-- Header Logo --> 
+          <a class="logo" title="Magento Commerce" href="{{ path('produits') }}"><img alt="E-Boutique" src="{{ asset('frontoffice/images/logo.png')}}"></a> 
+          <!-- End Header Logo --> 
+        </div>
+        <div class="col-lg-8 col-sm-6 col-md-8"> 
+          <!-- Search-col -->
+          <div class="search-box">
+            <form action="{{ path('rechercheProduits') }}" method="POST"  id="search_mini_form">
+              {% render(controller('EcommerceBundle:Categories:tousCategories')) %}
+              {% render(controller('EcommerceBundle:Produits:recherche')) %}
+           
+            </form>
+          </div>
+          <!-- End Search-col --> 
+        </div>
+        <!-- Top Cart -->
+       <div class="col-lg-2 col-sm-3 col-md-2">
+          <div class="top-cart-contain">
+            <div class="mini-cart">
+              <div  data-hover="dropdown" class="basket dropdown-toggle"> <a href="{{ path('panier') }}"> <i class="glyphicon glyphicon-shopping-cart"></i>
+                <div class="cart-box"><span class="title"></span><span id="cart-total">{% render(controller('EcommerceBundle:Panier:articles')) %} </span></div>
+                </a></div>
+             {% render(controller('EcommerceBundle:Panier:panierHover')) %}
+            </div>
+            <div id="ajaxconfig_info"> <a href="#/"></a>
+              <input value="" type="hidden">
+              <input id="enable_module" value="1" type="hidden">
+              <input class="effect_to_cart" value="1" type="hidden">
+              <input class="title_shopping_cart" value="Go to shopping cart" type="hidden">
+            </div>
+          </div>
+        </div>
+        <!-- End Top Cart --> 
+      </div>
+    </div>
+  </header>
+  <!-- end header --> 
+  <!-- Navbar -->
+  <nav>
+    <div class="container">
+      <div class="nav-inner">
+        <div class="logo-small"> <a class="logo" title="Magento Commerce" href="{{ path('produits') }}"><img alt="E-Boutique" src="{{ asset('frontoffice/images/logo.png')}}"></a> </div>
+        <!-- mobile-menu -->
+        <div class="hidden-desktop" id="mobile-menu">
+          <ul class="navmenu">
+            <li>
+              <div class="menutop">
+                <div class="toggle"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></div>
+                <h2>Menu</h2>
+              </div>
+             {% render(controller('EcommerceBundle:Categories:menuHorizontal')) %}
+            </li>
+          </ul>
+          <!--navmenu--> 
+        </div>
+        
+        <!--End mobile-menu -->
+        <ul id="nav" class="hidden-xs">
+          <li class="level0 nav-8 level-top"> <a href="{{ path('produits') }}" class="level-top"> <span>Acceuil</span> 
+          <li class="level0 parent drop-menu"><a href="{{ path('contactUs') }}"><span>Contact</span> </a>   
+          </li>
+           <li class="nav-custom-link level0 level-top parent"> <a class="level-top" href="{{ path('blog') }}"><span>Blog</span></a>
+           {% render(controller('PagesBundle:Pages:menuHorizontal')) %}
+          </li>
+          <li class="level0 nav-8 level-top"> <a href="{{ path('aboutUs') }}" class="level-top"> <span>À propos de nous</span> </a> </li>
+          {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <li class="level0 nav-8 level-top"> <a href="{{ path('fos_user_profile_show') }}" class="level-top"> <span>MON compte</span> </a> </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- end nav --> 
+
+
+   {% if error %}
+        <div>{{ error|trans({}, 'FOSUserBundle') }}</div>
+    {% endif %}
+{% trans_default_domain 'FOSUserBundle' %}
+    {% for type, messages in app.session.flashbag.all() %}
+        {% for message in messages %}
+            <div class="alert alert-{{ type }}" id="mar">
+                <strong>{{ message }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+</div>   
+    <section class="main-container col1-layout">
+        <div class="main container">
+            <div class="account-login">
+                <div class="page-title">
+                    <h2>Identifiez-vous ou créez un compte</h2>
+                </div>
+                <fieldset class="col2-set">
+                    <legend>Identifiez-vous ou créez un compte</legend>
+                    <div class="col-1 new-users"><strong>nouveaux clients</strong>
+                        <div class="content">
+                            <p>En créant un compte sur notre boutique , vous serez en mesure de se déplacer à travers le processus de paiement plus rapide , stocker les adresses de livraison multiples , consulter et suivre vos commandes dans votre compte et plus encore.</p>
+                            <div class="buttons-set">
+                                <a href="{{ path('fos_user_registration_register') }}"><button action="{{ path('fos_user_registration_register') }}" class="button create-account" type="button"><span>Créer un compte</span></button></a> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2 registered-users"><strong>Clients enregistrés</strong>
+                        <div class="content">
+                            <form action="{{ path("fos_user_security_check") }}" method="POST">
+                                <p>Si vous avez un compte avec nous , s'il vous plaît connecter .</p>
+                                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                                <ul class="form-list">
+                                    <li>
+                                        <label  for="username">{{ 'security.login.username'|trans }}<span class="required">*</span></label>
+                                        <br>
+                                        <input type="text" title="Email Address" class="input-text required-entry" id="username" name="_username" value="{{ last_username }}" required="required">
+                                    </li>
+                                    <li>
+                                        <label for="password">{{ 'security.login.password'|trans }}<span class="required">*</span></label>
+                                        <br>
+                                        <input type="password" title="Password" class="input-text required-entry validate-password" id="password" name="_password" required="required">
+                                    </li>
+                                </ul>
+                                <input class="required" type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                                <label for="remember_me">{{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}</label>
+
+                                <div class="buttons-set">
+                                    <button type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" class="button login"><span>S'identifier</span></button>
+                                    <a class="forgot-word" href="{{ path("fos_user_resetting_check_email") }}">Mot de passe oublié?</a> </div>
+                                    
+                        
+                        </div>
+                        </form>
+                    </div>
+                </fieldset>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+        </div>
+    </section>
+
+
+  <footer class="footer wow bounceInUp animated">
+    <div class="brand-logo ">
+      <div class="container">
+        <div class="slider-items-products">
+          <div id="brand-logo-slider" class="product-flexslider hidden-buttons">
+            <div class="slider-items slider-width-col6"> 
+              
+                <!-- Item -->
+              <div class="item"> <a href="#x"><img src="{{ asset('frontoffice/images/horedo.png')}}" alt="Image"></a> </div>
+              <!-- End Item --> 
+              
+              <!-- Item -->
+              <div class="item"> <a href="#x"><img src="{{ asset('frontoffice/images/horedo.png')}}"></a> </div>
+              <!-- End Item --> 
+              
+              <!-- Item -->
+              <div class="item"> <a href="#x"><img src="{{ asset('frontoffice/images/horedo.png')}}" alt="Image"></a> </div>
+              <!-- End Item --> 
+              
+              <!-- Item -->
+              <div class="item"> <a href="#x"><img src="{{ asset('frontoffice/images/horedo.png')}}" alt="Image"></a> </div>
+              <!-- End Item --> 
+              
+              <!-- Item -->
+              <div class="item"> <a href="#x"><img src="{{ asset('frontoffice/images/horedo.png')}}" alt="Image"></a> </div>
+              <!-- End Item --> 
+              
+              <!-- Item -->
+              <div class="item"> <a href="#x"><img src="{{ asset('frontoffice/images/horedo.png')}}" alt="Image"></a> </div>
+              <!-- End Item --> 
+              
+              <!-- Item -->
+              <div class="item"> <a href="#x"><img src="{{ asset('frontoffice/images/horedo.png')}}"></a> </div>
+              <!-- End Item --> 
+              
+              <!-- Item -->
+              <div class="item"> <a href="#x"><img src="{{ asset('frontoffice/images/horedo.png')}}" alt="Image"></a> </div>
+              <!-- End Item --> 
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-7">
+            <div class="social">
+              <ul>
+               <li class="fb"><a href="https://www.facebook.com/"></a></li>
+                <li class="tw"><a href="https://twitter.com/"></a></li>
+                <li class="googleplus"><a href="https://plus.google.com/"></a></li>
+                <li class="pintrest"><a href="https://fr.pinterest.com/"></a></li>
+                <li class="linkedin"><a href="https://www.linkedin.com/"></a></li>
+                <li class="youtube"><a href="https://www.youtube.com/"></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-middle container">
+      <div class="row">
+        <div class="col-md-4 col-sm-4">
+          <div class="footer-logo mar"><a href="{{ path('produits') }}" title="Logo"><img src="{{ asset('frontoffice/images/logo.png')}}" alt="logo"></a></div>
+          <div class="payment-accept">
+            <div><div class="icon-truck">&nbsp;</div>
+          <span class="hidden-xs"><strong class="bekir"> LIVRAISON ET RETOUR GRATUITS</strong> </span><br> <div class="icon-support">&nbsp;</div>
+          <span class="hidden-xs"><strong class="bekir">Service client</strong> 50390251</span> <br><div class="icon-money">&nbsp;</div>
+          <span class="hidden-xs"><strong class="bekir">Paiement à la livraison </strong> </span><br> <div class="icon-dis">&nbsp;</div>
+          <span class="hidden-xs"><strong class="bekir">bienvenue</strong></span></div>
+          </div>
+        </div> 
+        {% render(controller('EcommerceBundle:Categories:footer')) %}
+        <div class="col-md-4 col-sm-4">
+          <h4>Contactez nous</h4>
+          <div class="contacts-info">
+            <address>
+            <i class="add-icon">&nbsp;</i>7000 Tunisie, Bizerte, <br>
+            &nbsp;Bizerte 7000 TUNISIE
+            </address>
+            <div class="phone-footer"><i class="phone-icon">&nbsp;</i>50390251</div>
+            <div class="email-footer"><i class="email-icon">&nbsp;</i> <a href="#">eboutique@gmail.com</a> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-7 coppyright"> &copy;{{ "now"|date('Y') }}. Tous les droits sont réservés. Conçu par <a href="#">e-boutique.com</a> </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- End Footer --> 
+</div>
+
+<!-- JavaScript -->
+<script type="text/javascript" src="{{ asset('frontoffice/js/jquery.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('frontoffice/js/bootstrap.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('frontoffice/js/parallax.js')}}"></script>
+<script type="text/javascript" src="{{ asset('frontoffice/js/common.js')}}"></script>
+<script type="text/javascript" src="{{ asset('frontoffice/js/revslider.js')}}"></script>
+<script type="text/javascript" src="{{ asset('frontoffice/js/owl.carousel.min.js')}}"></script>
+  {% block js %}
+
+{% endblock js %}
+ <script type="text/javascript">
+        jQuery(document).ready(function(){
+            jQuery('#rev_slider_4').show().revolution({
+                dottedOverlay: 'none',
+                delay: 5000,
+                startwidth: 585,
+                startheight: 460,
+
+                hideThumbs: 200,
+                thumbWidth: 200,
+                thumbHeight: 50,
+                thumbAmount: 2,
+
+                navigationType: 'thumb',
+                navigationArrows: 'solo',
+                navigationStyle: 'round',
+
+                touchenabled: 'on',
+                onHoverStop: 'on',
+                
+                swipe_velocity: 0.7,
+                swipe_min_touches: 1,
+                swipe_max_touches: 1,
+                drag_block_vertical: false,
+            
+                spinner: 'spinner0',
+                keyboardNavigation: 'off',
+
+                navigationHAlign: 'center',
+                navigationVAlign: 'bottom',
+                navigationHOffset: 0,
+                navigationVOffset: 20,
+
+                soloArrowLeftHalign: 'left',
+                soloArrowLeftValign: 'center',
+                soloArrowLeftHOffset: 20,
+                soloArrowLeftVOffset: 0,
+
+                soloArrowRightHalign: 'right',
+                soloArrowRightValign: 'center',
+                soloArrowRightHOffset: 20,
+                soloArrowRightVOffset: 0,
+
+                shadow: 0,
+                fullWidth: 'on',
+                fullScreen: 'off',
+
+                stopLoop: 'off',
+                stopAfterLoops: -1,
+                stopAtSlide: -1,
+
+                shuffle: 'off',
+
+                autoHeight: 'off',
+                forceFullWidth: 'on',
+                fullScreenAlignForce: 'off',
+                minFullScreenHeight: 0,
+                hideNavDelayOnMobile: 1500,
+            
+                hideThumbsOnMobile: 'off',
+                hideBulletsOnMobile: 'off',
+                hideArrowsOnMobile: 'off',
+                hideThumbsUnderResolution: 0,
+
+                hideSliderAtLimit: 0,
+                hideCaptionAtLimit: 0,
+                hideAllCaptionAtLilmit: 0,
+                startWithSlide: 0,
+                fullScreenOffsetContainer: ''
+            });
+        });
+        </script> 
+</body>
+</html>

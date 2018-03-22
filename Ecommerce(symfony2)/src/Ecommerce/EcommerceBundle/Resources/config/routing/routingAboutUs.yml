@@ -1,0 +1,3 @@
+aboutUs:
+    pattern:  /
+    defaults: { _controller: EcommerceBundle:ContactUs:aboutUs }

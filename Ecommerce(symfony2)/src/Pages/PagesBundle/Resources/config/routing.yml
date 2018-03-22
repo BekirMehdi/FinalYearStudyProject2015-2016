@@ -1,0 +1,15 @@
+commentaire:
+    path:     /page/{id}
+    defaults: { _controller: PagesBundle:Pages:page }
+
+adminArticles:
+    resource: "@PagesBundle/Resources/config/routing/adminArticles.yml"
+    prefix:   /superAdmin/article
+
+article:
+    pattern:  /page/{id}
+    defaults: { _controller: PagesBundle:Pages:page }
+
+blog:
+    pattern:  /blog
+    defaults: { _controller: PagesBundle:Pages:menu }

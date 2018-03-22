@@ -1,0 +1,28 @@
+produits:
+    pattern:  /
+    defaults: { _controller: EcommerceBundle:Produits:acceuil }
+
+presentation:
+    pattern:  /produit/{id}
+    defaults: { _controller: EcommerceBundle:Produits:presentation }
+
+presentationPremium:
+    pattern:  /produitPremium/{idP}
+    defaults: { _controller: EcommerceBundle:Produits:presentationPremium }    
+
+presentationBoutique:
+    pattern:  /boutique/{id}
+    defaults: { _controller: EcommerceBundle:Boutiques:presentationBoutique }
+
+sousCategorieGridProduits:
+    pattern:  /sousCategorieGrid/{sousCategorieGrid}
+    defaults: { _controller: EcommerceBundle:Produits:sousCategorieGrid }    
+
+sousCategorieListeProduits:
+    pattern:  /sousCategorieListe/{sousCategorieListe}
+    defaults: { _controller: EcommerceBundle:Produits:sousCategorieListe }    
+
+
+boutiqueProduits:
+    pattern:  /boutique/m/{boutique}
+    defaults: { _controller: EcommerceBundle:Boutiques:produit }

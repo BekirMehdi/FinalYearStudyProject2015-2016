@@ -1,0 +1,130 @@
+{% extends "::layout/layoutfront.html.twig" %}
+
+{% block body %}
+  <!-- breadcrumbs -->
+  <div class="breadcrumbs">
+    <div class="container">
+      <div class="row">
+        <ul>
+          <li class="home"> <a href="{{ path('produits') }}" title="Aller à la page d'accueil">Accueil</a><span>&mdash;›</span></li>
+          <li class=""> <a href="{{ path('categorieGridBoutiques', { 'categorieGrid' : sousCategorie.categorie.id }) }}" title="">{{ sousCategorie.categorie }}</a><span>&mdash;›</span></li>
+          <li class="category13"><strong> {{ sousCategorie.nom }} </strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- End breadcrumbs --> 
+  <!-- Two columns content -->
+  <div class="main-container col2-left-layout">
+    <div class="main container">
+      <div class="row">
+        <section class="col-main col-sm-9 col-sm-push-3 wow bounceInUp animated">
+          <div class="category-description std">
+            <div class="category-image"><img src="{{ asset(sousCategorie.image.AssetPath) }}" alt="cat imges " title="{{ sousCategorie.nom }} "> </div>
+          </div>
+          <div class="category-title">
+            <h1>{{ sousCategorie.nom }}</h1>
+          </div>
+          <div class="category-products">
+            <div class="toolbar">
+              <div class="sorter">
+                <div class="view-mode"> <a href="{{ path('sousCategorieGridProduits', { 'sousCategorieGrid' : sousCategorie.id }) }}" title="Grid" class="button button-grid">Grid</a>&nbsp; <span title="List" class="button button-active button-list">List</span>&nbsp; </div> 
+              </div>
+              <div id="sort-by">
+                <a class="button-asc left" href="#" title="Set Descending Direction"><span class="glyphicon glyphicon-arrow-up"></span></a> </div>
+              <div class="pager">
+                <div class="pages">>
+                  <ul class="pagination">
+                   {{ knp_pagination_render(produits) }}
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <ol id="products-list" class="products-list">
+            {% if produits|length != 0 %}
+            {% for produit in produits %}
+              <li class="item odd">
+                <div class="product-image"> <a href="{{ path('presentation', { 'id' : produit.id }) }}" title="HTC Rhyme Sense"> <img class="small-image" src="{{ asset(produit.image.AssetPath) }}" title="{{ produit.nom }}" width="230" height="172px"> </a> </div>
+                <div class="product-shop">
+                  <p class="item-title"> <a title=" Sample Product" href="{{ path('presentation', { 'id' : produit.id }) }}"> {{ produit.nom }}</a> </p>
+                  <div class="item-title"> <a title=" Sample Product" href="{{ path('presentation', { 'id' : produit.id }) }}"> {{ produit.marque }}</a> </div>
+                  <div class="price-box">
+                    <p class="old-price"> <span class="price-label"></span> <span id="old-price-212" class="price"> {{ produit.prixremise }} dt </span> </p>
+                    <p class="special-price"> <span class="price-label"></span> <span id="product-price-212" class="price">{{ produit.prix }} dt  </span> </p>
+                  </div>
+                  {% if produit.disponible!=0 %}
+                  <div class="availability in-stock">Disponibilité: <span>En stock</span></div>
+                  {% else %}
+                  <div class="availability in-stock">Disponibilité: <span> Non </span></div>
+                  {% endif %}
+              
+                  <div class="actions">
+                  {% if panier[produit.id] is not defined %}
+                    {% if produit.disponible!=0 %}
+                      <a href="{{ path('ajouter', { 'id' : produit.id }) }}" ><button class="button btn-cart ajx-cart" title="Ajouter au panier" type="button"><span>Ajouter au panier</span></button></a>
+                    {% else %} 
+                      <a href="{{ path('presentation', { 'id' : produit.id }) }}" ><button class="button btn-cart ajx-cart" title="Ajouter au panier" type="button"><span>N'est pas disponible</span></button></a>
+                    {% endif %} 
+                  {% else %}  
+                   <a href="{{ path('ajouter', { 'id' : produit.id }) }}" ><button class="button btn-cart ajx-cart" title="Ajouter au panier" type="button"><span>Deja au panier</span></button></a>
+                  {% endif %}   
+                    <span class="add-to-links"> <a title="Boutique de produit" class="button link-wishlist" href="{{ path('presentationBoutique', { 'idB' : produit.boutique.id }) }}"><span>Boutique</span></a>  </span> </div>  
+                </div>
+              </li>
+          {% endfor %}   
+            </ol>
+          </div>
+        {% else %}
+            Aucun produit
+          {% endif %}  
+        </section>
+                       <!-- ----------------------------mehdi----------------------------- --!>
+<aside class="col-left sidebar col-sm-3 col-xs-12 col-sm-pull-9 wow bounceInUp animated">
+  <div class="side-nav-categories">
+            <div class="block-title"> Categories </div>
+            <!--block-title--> 
+            <!-- BEGIN BOX-CATEGORY -->
+            <div class="box-content box-category">
+              <ul>
+                {% set id = sousCategorie.categorie.nom %}
+                <li class="active"> <a  href="{{ path('categorieGridBoutiques', { 'categorieGrid' : sousCategorie.categorie.id }) }}">{{sousCategorie.categorie.nom}}</a> <span class="subDropdown minus"></span>
+                  {% for SousCategorie in sousCategories %}
+                    {% set id1 = SousCategorie.categorie %}
+                    {% if id1 == id %}
+                      <ul class="level0_415">
+                        <li> <a href="{{ path('sousCategorieGridProduits', { 'sousCategorieGrid' : SousCategorie.id }) }}"> {{ SousCategorie.nom }} </a> 
+                        </li>
+                      </ul>  
+                    {% endif %}   
+                  {% endfor %}   
+                  <!--level1-->
+                  <!--level0--> 
+                </li>
+                <!--level 0-->
+                {% for Categorie in categories %}
+                  {% set id2 = Categorie.nom %}
+                  {% if  id2 != id %}
+                    <li> <a href="{{ path('categorieGridBoutiques', { 'categorieGrid' : Categorie.id }) }}">{{Categorie.nom}}</a> <span class="subDropdown plus"></span>
+                      <ul class="level0_482">
+                        {% for sousCategorie in sousCategories %}
+                          {% set id1 = sousCategorie.categorie %}
+                          {% if id1 == id2 %} 
+                            <li> <a href="{{ path('sousCategorieGridProduits', { 'sousCategorieGrid' : sousCategorie.id }) }}"> {{ sousCategorie.nom }} </a></li>
+                          {% endif %} 
+                        {% endfor %} 
+                      </ul>
+                    </li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            </div>
+            <!--box-content box-category--> 
+  </div>   
+  {% render(controller('EcommerceBundle:Panier:panierVertical')) %}
+          {% render(controller('EcommerceBundle:Produits:produitVertical')) %}
+</aside>
+      </div>
+    </div>
+  </div>
+  <!-- End Two columns content --> 
+{% endblock %}  

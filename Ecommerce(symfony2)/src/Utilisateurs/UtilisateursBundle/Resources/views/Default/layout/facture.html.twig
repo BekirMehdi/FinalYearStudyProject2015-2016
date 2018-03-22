@@ -1,0 +1,74 @@
+{% extends "::layout/layoutfront.html.twig" %}
+{% block body %}
+<div class="breadcrumbs">
+    <div class="container">
+      <div class="row">
+        <ul>
+          <li class="home"> <a title="Aller à la page d'accueil" href="{{ path('produits') }}">Accueil</a><span>&mdash;›</span></li>
+          <li class="category13"><strong>Factures</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="main-container col2-right-layout">
+    <div class="main container">
+      <div class="row">
+        <section class="col-main col-sm-9 wow bounceInUp animated">
+          <div class="my-account">
+          {% for flashMessage in app.session.flashbag.get('success') %}
+            <div class="alert alert-success">
+                {{ flashMessage }}
+            </div>
+          {% endfor %}
+          {% for flashMessage in app.session.flashbag.get('error') %}
+            <div class="alert alert-errors">
+                {{ flashMessage }}
+            </div>
+          {% endfor %}
+            <div class="page-title">
+              <h2>Factures</h2>
+            </div>
+            <div class="dashboard">
+        
+              <div class="recent-orders">
+               
+                <div class="table-responsive">
+                  <table class="data-table" id="my-orders-table">
+                    
+                    <thead>
+                      <tr class="first last">
+                        <th>Références</th>
+                        <th>Date</th>
+                        <th>Prix TTC</th>
+                        <th>PDF</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    {% if factures|length == 0 %}
+                      <tr class="first odd">
+                        <td><center>Ancunne facture actuellement.</center></td>
+                      </tr>
+                    {% endif %}
+                    {% for facture in factures %}  
+                      <tr class="first odd">
+                        <td>{{ facture.reference }}</td>
+                        <td>{{ facture.date|date('d/m/Y') }}</td>
+                        <td>{{ facture.commande.prixTTC }} dt</td>
+                        <td><a href="{{ path('facturesPDF', { 'id' : facture.id }) }}" target="_blank"><i class="icon-refresh"></i></a></td>
+                      </tr>
+                    {% endfor %}  
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+       {% include 'UtilisateursBundle:Default:modulesUsed/utilisateursConnecte.html.twig' %}   
+      </div>
+    </div>
+  </div>
+{% block js %}
+  <link rel="stylesheet" href="{{ asset('css/font-awesome.css') }}" />
+{% endblock %}  
+{% endblock %}

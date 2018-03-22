@@ -1,0 +1,118 @@
+{% extends "::layout/layoutfront.html.twig" %}
+
+{% block body %}
+<div class="main-container col2-right-layout">
+    <div class="main container">
+      <div class="row">
+        <div class="col-main col-sm-9 wow bounceInUp animated">
+          <div class="page-title">
+            <h2>Blog</h2>
+          </div>
+          <div class="blog-wrapper" id="main">
+            <div class="site-content" id="primary">
+              <div role="main" id="content">
+                <article class="blog_entry clearfix">
+                  <header class="blog_entry-header clearfix">
+                    <div class="blog_entry-header-inner">
+                      <h2 class="blog_entry-title">{{articles.titre}}</h2>
+                    </div>
+                    <!--blog_entry-header-inner--> 
+                  </header>
+                  <!--blog_entry-header clearfix-->
+                  <div class="entry-content">
+                    <div class="featured-thumb"><img alt="{{articles.titre}}" src="{{ asset(articles.image.AssetPath) }}"></div>
+                    <div class="entry-content">
+                      
+                      <blockquote>{{articles.contenu|raw}}.</blockquote>
+                     
+                    </div>
+                  </div>
+                  <footer class="entry-meta"> Cet article a été publiée  en
+                    <time datetime="2014-07-10T06:53:43+00:00" class="entry-date"><div class="post-date"><i class="icon-calendar"></i> {% if articles.datecreation %}{{ articles.datecreation|date('Y-m-d H:i:s') }}{% endif %}</div></time></footer>
+                </article>
+                <div class="comment-content wow bounceInUp animated">
+                 {% if commentaires|length != 0 %}
+                 <div class="comments-wrapper">
+                    <h3> Comments </h3>
+                    <ul class="commentlist">
+                    {% for comment in commentaires|slice(0, 3) %}
+                     <li class="comment">
+                            <div class="comment-wrapper">
+                              <div class="comment-author vcard"><p class="gravatar"><a href="#"><img height="70px" alt="avatar" src="{{ asset('frontoffice/images/commentaire.jpg')}}"></a></p> <span class="author"> {{comment.nom}}</span> </div>
+                              <!--comment-author vcard-->
+                              <div class="comment-meta">
+                                <time datetime="2014-07-10T07:27:08+00:00" class="entry-date"><div class="post-date"><i class="icon-calendar"></i> {% if articles.datecreation %}{{ articles.datecreation|date('Y-m-d H:i:s') }}{% endif %}</div></time>
+                              </div>
+                              <!--comment-meta-->
+                              <div class="comment-body">  {{comment.commentaire}} </div>
+                            </div>
+                          </li>
+                     {% endfor %}
+                    </ul>
+                    <!--commentlist--> 
+                  </div>
+
+ {% endif %}
+                  <!--comments-wrapper-->
+                  	{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                  <div class="comments-form-wrapper clearfix">
+                    <h3>Laisser une réponse</h3>
+                    <form class="comment-form" action="{{ path('commentaire', { 'id' : articles.id }) }}" method="POST" id="postComment">
+                      <div class="field">
+                        <label>Nom<em class="required">*</em></label>
+                        <input type="text" class="input-text" title="nom" value="" id="user" name="nom">
+                      </div>
+                      <div class="field">
+                        <label>Email<em class="required">*</em></label>
+                        <input type="text" class="input-text validate-email" title="Email" value="" id="email" name="email">
+                      </div>
+                      <div class="clear"></div>
+                      <div class="field aw-blog-comment-area">
+                        <label>Commentaire<em class="required">*</em></label>
+                        <textarea rows="5" cols="50" class="input-text" title="Commentaire" id="comment" name="commentaire"></textarea>
+                      </div>
+                      <div class="button-set">
+                        <input type="hidden" value="1" name="blog_id">
+                        <button type="submit" class="bnt-comment"><span><span>Ajouter un commentaire</span></span></button>
+                      </div>
+                    </form>
+                  </div>
+ {% endif %}
+                  <!--comments-form-wrapper clearfix--> 
+       
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-right sidebar col-sm-3 wow bounceInUp animated">
+          <div role="complementary" class="widget_wrapper13" id="secondary">
+            <div class="popular-posts widget widget__sidebar wow bounceInUp animated" id="recent-posts-4">
+              <h3 class="widget-title">Les derenieere articles</h3>
+              <div class="widget-content">
+                <ul class="posts-list unstyled clearfix">
+                 {% for Article in Articles|slice(0,6) %}
+                  <li>
+                    <figure class="featured-thumb"> <a href="{{ path('article', { 'id' : Article.id }) }}"> <img width="8px" height="5px" alt="blog image" src="{{ asset(Article.image.AssetPath) }}"> </a> </figure>
+                    <!--featured-thumb-->
+                    <h4><a title="{{ Article.titre }}" href="{{ path('article', { 'id' : Article.id }) }}">{{ Article.titre }}</a></h4>
+                    <p class="post-meta">
+                      <time datetime="2014-07-10T07:09:31+00:00" class="entry-date"><div class="post-date"><i class="icon-calendar"></i> {% if Article.datecreation %}{{ Article.datecreation|date('Y-m-d H:i:s') }}{% endif %}</div></time>
+                      .</p>
+                  </li>
+                {% endfor %}  
+                </ul>
+              </div>
+              <!--widget-content--> 
+            </div>
+         
+            <!-- Banner Ad Block -->
+            
+            <!-- Banner Text Block -->
+           
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

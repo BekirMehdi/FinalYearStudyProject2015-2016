@@ -1,0 +1,30 @@
+SuperAdminCategories:
+    pattern:  /
+    defaults: { _controller: "EcommerceBundle:CategoriesSuperAdmin:index" }
+
+SuperAdminCategories_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "EcommerceBundle:CategoriesSuperAdmin:show" }
+
+SuperAdminCategories_new:
+    pattern:  /new
+    defaults: { _controller: "EcommerceBundle:CategoriesSuperAdmin:new" }
+
+SuperAdminCategories_create:
+    pattern:  /create
+    defaults: { _controller: "EcommerceBundle:CategoriesSuperAdmin:create" }
+    requirements: { _method: post }
+
+SuperAdminCategories_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "EcommerceBundle:CategoriesSuperAdmin:edit" }
+
+SuperAdminCategories_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "EcommerceBundle:CategoriesSuperAdmin:update" }
+    requirements: { _method: post|put }
+
+SuperAdminCategories_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "EcommerceBundle:CategoriesSuperAdmin:delete" }
+    requirements: { _method: post|delete }

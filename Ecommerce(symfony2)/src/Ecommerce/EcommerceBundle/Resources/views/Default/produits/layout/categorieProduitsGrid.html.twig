@@ -1,0 +1,171 @@
+{% extends "::layout/layoutfront.html.twig" %}
+
+{% block body %}
+  <!-- breadcrumbs -->
+  <div class="breadcrumbs">
+    <div class="container">
+      <div class="row">
+        <ul>
+          <li class="home"> <a href="{{ path('produits') }}" title="Aller à la page d'accueil">Accueil</a><span>&mdash;›</span></li>
+          <li class=""> <a href="{{ path('categorieGridBoutiques', { 'categorieGrid' : sousCategorie.categorie.id }) }}" title="Go to Home Page">{{ sousCategorie.categorie }}</a><span>&mdash;›</span></li>
+          <li class="category13"><strong> {{ sousCategorie.nom }} </strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- End breadcrumbs --> 
+  <!-- Two columns content -->
+   <div class="main-container col2-left-layout">
+    <div class="main container">
+      <div class="row">
+        <section class="col-main col-sm-9 col-sm-push-3 wow bounceInUp animated">
+          <div class="category-description std">
+            <div class="slider-items-products">
+              <div id="category-desc-slider" class="product-flexslider hidden-buttons">
+                <div class="slider-items slider-width-col1"> 
+                  
+                  <!-- Item -->
+                  <div class="item"> <a href="#x"><img alt="" src="{{ asset(sousCategorie.image.AssetPath) }}"></a>
+                    <div class="cat-img-title cat-bg cat-box">
+
+                    </div>
+                  </div>
+                  <!-- End Item --> 
+           
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="category-title">
+          
+              <h1>{{sousCategorie.nom }}</h1>
+        
+          </div>
+          {% if produits|length != 0 %}
+          <div class="category-products">
+            <div class="toolbar">
+              <div class="sorter">
+              {% for produit in produits|slice(0, 1) %}
+                <div class="view-mode"> <span title="Grid" class="button button-active button-grid">Grid</span><a href="{{ path('sousCategorieListeProduits', { 'sousCategorieListe' : produit.categorieProduit.id }) }}" title="List" class="button button-list">List</a> </div>
+              {% endfor %}
+              </div>
+              <div id="sort-by">
+                <a class="button-asc left" href="#" title="Set Descending Direction"><span class="glyphicon glyphicon-arrow-up"></span></a> </div>
+              <div class="pager">
+                <div class="pages">
+                  <ul class="pagination">
+                   {{ knp_pagination_render(produits) }}
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <ul class="products-grid">
+            {% for produit in produits %}
+              <li class="item col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                <div class="col-item">
+                {% if produit.disponible == 1  %}
+                  <div class="sale-label sale-top-right">dispo</div>
+                {% endif %}  
+                  <div class="product-image-area"> <a class="product-image" title="{{ produit.nom }}" href="{{ path('presentation', { 'id' : produit.id }) }}"> <img src="{{ asset(produit.image.AssetPath) }}" class="img-responsive" title="{{ produit.nom }}" /> </a>
+                <div class="hover_fly">
+                  {% if panier[produit.id] is not defined  %}    
+                    {% if produit.disponible!=0 %}
+                      <a class="exclusive ajax_add_to_cart_button" href="{{ path('ajouter', { 'id' : produit.id }) }}" title="Ajouter au panier">
+                        <div><i class="icon-shopping-cart"></i><span>Ajouter au panier</span></div></a> 
+                    {% else %}     
+                      <a class="exclusive ajax_add_to_cart_button" href="{{ path('presentation', { 'id' : produit.id }) }}" title="N'est pas disponible">
+                        <div><i class="icon-shopping-cart"></i><span>N'est pas disponible</span></div></a> 
+                    {% endif %}   
+                  {% else %}
+                  <a class="exclusive ajax_add_to_cart_button" href="{{ path('ajouter', { 'id' : produit.id }) }}" title="Deja en panier">
+                  <div><i class="icon-shopping-cart"></i><span>Deja en panier</span></div></a> 
+                  {% endif %}
+                       <a class="quick-view" href="{{ path('presentation', { 'id' : produit.id }) }}" title="Aperçu rapide">
+                      <div><i class="icon-eye-open"></i><span>Aperçu rapide</span></div>
+                      </a> <a class="add_to_compare" href="{{ path('sousCategorieGridProduits', { 'sousCategorieGrid' : produit.categorieProduit.id }) }}" title="Catégorie">
+                        <div><i class="icon-random"></i><span>Catégorie</span></div>
+                      </a> <a class="addToWishlist wishlistProd_5" href="{{ path('presentationBoutique', { 'idB' : produit.boutique.id }) }}" title="Voir Boutique" >
+                      <div><i class="icon-heart"></i><span>Voir Boutique</span></div>
+                        </a> 
+                  </div>
+                  </div>
+                  <div class="info">
+                    <div class="info-inner">
+                      <div class="item-title"> <a title=" Sample Product" href="{{ path('presentation', { 'id' : produit.id }) }}"> {{ produit.nom }}</a> </div>
+                      <div class="item-title"> <a title=" Sample Product" href="{{ path('presentation', { 'id' : produit.id }) }}"> {{ produit.marque }}</a> </div>
+                      Boutique:{{ produit.boutique.nom }}
+                      <!--item-title-->
+                      <div class="item-content">
+                        <div class="ratings">
+                        </div>
+                        <div class="price-box">
+                          <p class="special-price"> <span class="price">{{ produit.prixremise }} dt</span> </p>
+                          <p class="old-price"> <span class="price-sep">-</span> <span class="price">{{ produit.prix }} dt </span> </p>
+                        </div>
+                      </div>
+                      <!--item-content--> 
+                    </div>
+                    <!--info-inner-->
+                    
+                    <div class="clearfix"> </div>
+                  </div>
+                </div>
+              </li>
+            {% endfor %} 
+            </ul>
+          </div>
+          {% else %}
+            Aucun produit
+          {% endif %} 
+        </section>
+   
+              <!-- ----------------------------mehdi----------------------------- --!>
+        <aside class="col-left sidebar col-sm-3 col-xs-12 col-sm-pull-9 wow bounceInUp animated">
+          <div class="side-nav-categories">
+            <div class="block-title"> Categories </div>
+              <!--block-title--> 
+              <!-- BEGIN BOX-CATEGORY -->
+              <div class="box-content box-category">
+                <ul>
+                  {% set id = sousCategorie.categorie.nom %}
+                  <li class="active"> <a  href="{{ path('categorieGridBoutiques', { 'categorieGrid' : sousCategorie.categorie.id }) }}">{{sousCategorie.categorie.nom}}</a> <span class="subDropdown minus"></span>
+                    {% for SousCategorie in sousCategories %}
+                      {% set id1 = SousCategorie.categorie %}
+                      {% if id1 == id %}
+                        <ul class="level0_415">
+                          <li> <a href="{{ path('sousCategorieGridProduits', { 'sousCategorieGrid' : SousCategorie.id }) }}"> {{ SousCategorie.nom }} </a> 
+                          </li>
+                        </ul>  
+                      {% endif %}   
+                    {% endfor %}   
+                    <!--level1-->
+                    <!--level0--> 
+                  </li>
+                  <!--level 0-->
+                  {% for Categorie in categories %}
+                    {% set id2 = Categorie.nom %}
+                    {% if  id2 != id %}
+                      <li> <a href="{{ path('categorieGridBoutiques', { 'categorieGrid' : Categorie.id }) }}">{{Categorie.nom}}</a> <span class="subDropdown plus"></span>
+                        <ul class="level0_482">
+                          {% for sousCategorie in sousCategories %}
+                            {% set id1 = sousCategorie.categorie %}
+                            {% if id1 == id2 %} 
+                              <li> <a href="{{ path('sousCategorieGridProduits', { 'sousCategorieGrid' : sousCategorie.id }) }}"> {{ sousCategorie.nom }} </a></li>
+                            {% endif %} 
+                          {% endfor %} 
+                        </ul>
+                      </li>
+                    {% endif %}
+                  {% endfor %}
+                </ul>
+              </div>
+              <!--box-content box-category--> 
+          </div>   
+          {% render(controller('EcommerceBundle:Panier:panierVertical')) %}
+          {% render(controller('EcommerceBundle:Produits:produitVertical')) %}
+
+        </aside>
+      </div>
+    </div>
+  </div>
+{% endblock %}

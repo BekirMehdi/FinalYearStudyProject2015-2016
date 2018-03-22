@@ -1,0 +1,71 @@
+{% extends "::layout/layoutfront.html.twig" %}
+{% block body %} 
+ <div class="main-container col2-right-layout">
+    <div class="main container">
+      <div class="row">
+        <div class="col-main col-sm-9">
+          <div class="page-title">
+            <h2>Blog</h2>
+          </div>
+            <div class="toolbar">
+              <div class="pager">
+                <div class="pages">
+                  <ul class="pagination">
+                   {{ knp_pagination_render(articles) }}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          <div class="blog-wrapper" id="main">
+            <div class="site-content" id="primary">
+              <div role="main" id="content">
+              <ol id="products-list" class="products-list">
+              {% for article in articles %}
+                <li class="item odd">
+                  <div class="product-image"> <a href="{{ path('article', { 'id' : article.id }) }}" title="Article"> <img class="small-image" src="{{ asset(article.image.AssetPath) }}" alt="{{ article.titre }}" width="230" height="172px"> </a> </div>
+                  <div class="product-shop">
+                  <h2 class="product-name"><a title=" Sample Product" href="{{ path('article', { 'id' : article.id }) }}"> {{ article.titre }} </a></h2>
+                                 
+                  <div class="desc std">
+                    <div class="post-date"><i class="icon-calendar"></i> {% if article.datecreation %}{{ article.datecreation|date('Y-m-d H:i:s') }}{% endif %}</div>
+                      <p>{{ article.description|raw }}</p>
+                  </div>
+                </li>
+             {% endfor %}
+             </ol>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+        <div class="col-right sidebar col-sm-3 wow bounceInUp animated">
+                  <div role="complementary" class="widget_wrapper13" id="secondary">
+                    <div class="popular-posts widget widget__sidebar wow bounceInUp animated" id="recent-posts-4">
+                      <h3 class="widget-title">Les derenieere articles</h3>
+                      <div class="widget-content">
+                        <ul class="posts-list unstyled clearfix">
+                 {% for Article in articles|slice(0,6) %}
+                  <li>
+                    <figure class="featured-thumb"> <a href="{{ path('article', { 'id' : Article.id }) }}"> <img width="8px" height="5px" alt="blog image" src="{{ asset(Article.image.AssetPath) }}"> </a> </figure>
+                    <!--featured-thumb-->
+                    <h4><a title="{{ Article.titre }}" href="{{ path('article', { 'id' : Article.id }) }}">{{ Article.titre }}</a></h4>
+                    <p class="post-meta">
+                      <time datetime="2014-07-10T07:09:31+00:00" class="entry-date"><div class="post-date"><i class="icon-calendar"></i> {% if Article.datecreation %}{{ Article.datecreation|date('Y-m-d H:i:s') }}{% endif %}</div></time>
+                      .</p>
+                  </li>
+                {% endfor %}  
+                </ul>
+              </div>
+              <!--widget-content--> 
+            </div>
+         
+            <!-- Banner Ad Block -->
+            
+            <!-- Banner Text Block -->
+           
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

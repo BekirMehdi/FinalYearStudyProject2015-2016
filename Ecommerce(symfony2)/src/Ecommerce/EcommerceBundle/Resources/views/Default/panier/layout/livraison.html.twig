@@ -1,0 +1,69 @@
+{% extends "::layout/layoutfront.html.twig" %}        
+
+{% block body %}
+
+<div class="breadcrumbs">
+    <div class="container">
+      <div class="row">
+        <ul>
+          <li class="home"> <a title="Aller à la page d'accueil" href="{{ path('produits') }}">Accueil</a><span>&mdash;›</span></li>
+          <li class="category13"><strong> remplissage des adresses</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+<section class="main-container col1-layout">
+        <div class="main container">
+            <div class="account-login">
+                <div class="page-title">
+                    <h2>Livraison</h2>
+                </div>
+                <fieldset class="col2-set">
+                    <legend>Livraison</legend>
+                    {% if utilisateur.adresses|length != 0 %}
+                    <form action="{{ path('validation') }}" method="POST">
+                    <div class="col-1 new-users">
+                        <div class="content">
+                        <h3>Adesse de livraison</h3>
+                            {% for adresse in utilisateur.adresses %}
+                            <label class="radio">
+                                <input type="radio" name="livraison" value="{{ adresse.id }}" {% if loop.index0 == 0 %}checked="checked"{% endif %}>
+                                {{ adresse.adresse }}, {{ adresse.codepostal }} {{ adresse.ville }} - {{ adresse.pays }} <a href="{{ path('livraisonAdresseSuppression', { 'id' : adresse.id }) }}"><i class="icon-trash"></i></a>
+                                <br />{{ adresse.prenom }} {{ adresse.nom }}
+                            </label>
+                            {% endfor %}
+                        </div>
+                    
+                    
+                        <div class="content">
+                         <h3>Adesse de facturation</h3>
+                            {% for adresse in utilisateur.adresses %}
+                            <label class="radio">
+                                <input type="radio" name="facturation" value="{{ adresse.id }}" {% if loop.index0 == 0 %}checked="checked"{% endif %}>
+                                {{ adresse.adresse }}, {{ adresse.codepostal }} {{ adresse.ville }} - {{ adresse.pays }} <a href="{{ path('livraisonAdresseSuppression', { 'id' : adresse.id }) }}"><i class="icon-trash"></i></a>
+                                <br />{{ adresse.prenom }} {{ adresse.nom }}
+                            </label>
+                            {% endfor %}
+                        </div>
+                        <button class="button btn-update" title="Valider mes adresses" value="update_qty" name="update_cart_action" type="submit"><span><span>Valider mes adresses</span></span></button>
+                    </div>
+                     
+                    </form>
+                    {% endif %}
+                    <div class="col-2 registered-users"><strong>Ajouter une nouvelle adresse</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Livraison/Facturation)</strong>
+                        <div class="content">
+                           <form action="{{ path('livraison') }}" method="POST">
+                            {{ form_widget(form) }}
+                            <button onclick="setLocation('#')" class="button btn-continue" title="Ajouter Shopping" type="submit"><span><span>Ajouter</span></span></button>
+                        </form>
+                    </div>
+                </fieldset>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+        </div>
+    </section>
+{% endblock %}

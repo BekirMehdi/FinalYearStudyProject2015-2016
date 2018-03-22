@@ -1,0 +1,24 @@
+
+                  <div class="comments-form-wrapper clearfix">
+                    <h3>Leave A reply</h3>
+                    <form class="comment-form" action="{{ path('commentaire') }}" method="POST" id="postComment">
+                      <div class="field">
+                        <label>Name<em class="required">*</em></label>
+                        <input type="text" class="input-text" title="Name" value="" id="user" name="nom" required="required">
+                      </div>
+                      <div class="field">
+                        <label>Email<em class="required">*</em></label>
+                        <input type="text" class="input-text validate-email" title="Email" value="" id="email" name="email" required="required">
+                      </div>
+                      <div class="clear"></div>
+                      <div class="field aw-blog-comment-area">
+                        <label>Comment<em class="required">*</em></label>
+                        <textarea rows="5" cols="50" class="input-text" title="Comment" id="comment" name="commentaire" required="required"></textarea>
+                      </div>
+                      <div class="button-set">
+                        <input type="hidden" value="1" name="blog_id">
+                        <button type="submit" class="bnt-comment"><span><span>Ajouter un commentaire</span></span></button>
+                      </div>
+                    </form>
+                  </div>
+ 

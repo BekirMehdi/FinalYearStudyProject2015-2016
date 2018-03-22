@@ -1,0 +1,30 @@
+adminProduitsPremium:
+    path:     /
+    defaults: { _controller: "EcommerceBundle:ProduitsPremium:index" }
+
+adminProduitsPremium_show:
+    path:     /{id}/show
+    defaults: { _controller: "EcommerceBundle:ProduitsPremium:show" }
+
+adminProduitsPremium_new:
+    path:     /new
+    defaults: { _controller: "EcommerceBundle:ProduitsPremium:new" }
+
+adminProduitsPremium_create:
+    path:     /create
+    defaults: { _controller: "EcommerceBundle:ProduitsPremium:create" }
+    requirements: { _method: post }
+
+adminProduitsPremium_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "EcommerceBundle:ProduitsPremium:edit" }
+
+adminProduitsPremium_update:
+    path:     /{id}/update
+    defaults: { _controller: "EcommerceBundle:ProduitsPremium:update" }
+    requirements: { _method: post|put }
+
+adminProduitsPremium_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "EcommerceBundle:ProduitsPremium:delete" }
+    requirements: { _method: post|delete }

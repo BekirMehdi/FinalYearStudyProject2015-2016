@@ -1,0 +1,33 @@
+{% set totalHT = 0 %}
+{% set totalTTC = 0%}
+
+  <div class="block block-cart">
+            <div class="block-title ">MON PANIER</div>
+            <div class="block-content">
+              <div class="summary">
+                <p class="amount">Il y a <a href="#">{% render(controller('EcommerceBundle:Panier:articles')) %}</a> dans votre panier.</p>
+              {% if articles != 0 %}  
+              {% for produit in produits|slice(0, 6) %}
+              {% set totalHT = totalHT + (produit.prixremise * panier[produit.id]) %}
+              {% endfor %} 
+                <p class="subtotal"> <span class="label">Panier Sous-total:</span> <span class="price">{{ totalHT }} dt</span> </p>
+              </div>
+              <div class="ajax-checkout">
+              <form action="{{ path('panier') }}">
+               <button type="submit" action ="{{ path('panier') }}"title="Voir Panier" class="button button-checkout"><span> Voir Panier</span></button>
+              </form> 
+              </div>
+              <p class="block-subtitle">Derniers articles ajoutés (s) </p>
+              <ul>
+              {% for produit in produits|slice(0, 2) %}
+                <li class="item"> <a class="product-image" title="{{ produit.nom }}" href="{{ path('presentation', { 'id' : produit.id }) }}"><img width="80" alt="{{ produit.nom }}" src="{{ asset(produit.image.AssetPath) }}"></a>
+                  <div class="product-details">
+                    <div class="access"> <a class="btn-remove1" title="Supprimer cet article" href="{{ path('supprimer', { 'id' : produit.id }) }}"> <span class="icon"></span> Supprimer </a> </div>
+                    <p class="product-name"> <a href="{{ path('presentation', { 'id' : produit.id }) }}">{{ produit.nom }}</a> </p>
+                    <strong>{{ panier[produit.id] }}</strong> x <span class="price">{{ produit.prixremise  }} dt</span> </div>
+                </li>
+              {% endfor %}  
+              </ul>
+            {% endif %}                
+            </div>
+        </div>

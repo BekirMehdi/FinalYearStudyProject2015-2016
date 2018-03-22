@@ -1,0 +1,53 @@
+{% extends "::layout/layoutfront.html.twig" %}
+
+{% block body %}
+
+<!-- Breadcrumbs -->
+  
+  <div class="breadcrumbs">
+    <div class="container">
+      <div class="row">
+        <ul>
+          <li class="home"> <a title="Aller à la page d'accueil" href="i{{ path('produits') }}">Acceuil</a><span>&mdash;›</span></li>
+          <li class="category13"><strong>À propos de nous</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- main-container -->
+  <div class="main-container col2-right-layout">
+    <div class="main container">
+      <div class="row">
+        <section class="col-main col-sm-9 wow bounceInUp animated">
+          <div class="page-title">
+            <h2>À propos de nous</h2>
+          </div>
+          <div class="static-contain">
+
+
+          
+
+<div class="header_pdf_aide" style=" border-bottom: 1px solid #000; width:100%; height: 150px;">
+              <div class="entete_aide" style=" width:34%; float:left;">
+                <p style="background: #1c95d1;"><img alt="E-Boutique" src="{{ asset('frontoffice/images/logo.png')}}"></p>
+              </div>
+              <div  style="width: 210px; float:right;  right: 1px; text-align: left;">
+                <p><b>Adress    :</b>  7000 Tunisie, Bizerte </p>
+                <p><b>Email     :</b>  eboutique@Contact.com </p>
+                <p><b>Téléphone :</b>  +21650390251 </p>
+              </div>
+              <div style="clear:both"></div>
+          </div>
+
+          </div>
+        </section>
+         <aside class="col-right sidebar col-sm-3 wow bounceInUp animated">
+          <div class="block block-company">
+            <img alt="offer banner1" src="{{ asset('frontoffice/images/logo1 (2).ico')}}">
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+  <!--End main-container --> 
+  {% endblock %}

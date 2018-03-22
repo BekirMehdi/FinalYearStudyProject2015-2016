@@ -1,0 +1,12 @@
+
+
+   <div class="offer-banner-section wow bounceInUp animated">
+    <div class="container">
+      <div class="row">
+      {% for boutiquePremium in boutiquesPremium|slice(0, 3) %}
+        <a href="{{ path('presentationBoutiquePremium', { 'idBP' : boutiquePremium.id }) }}"><div class="col-lg-4 col-xs-12 col-sm-4"><img alt="offer banner1" src="{{ asset(boutiquePremium.image.AssetPath) }}"></a>
+        </div>
+       {% endfor %} 
+      </div>
+    </div>
+  </div>

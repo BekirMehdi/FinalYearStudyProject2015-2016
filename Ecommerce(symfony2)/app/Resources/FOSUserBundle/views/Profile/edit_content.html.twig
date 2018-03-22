@@ -1,0 +1,35 @@
+{% trans_default_domain 'FOSUserBundle' %}
+<div class="breadcrumbs">
+    <div class="container">
+      <div class="row">
+        <ul>
+          <li class="home"> <a title="Aller à la page d'accueil" href="{{ path('produits') }}">Accueil</a><span>&mdash;›</span></li>
+          <li class="category13"><strong>Edit mes informations</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- main-container -->
+  <div class="main-container col2-right-layout">
+    <div class="main container">
+      <div class="row">
+        <section class="col-main col-sm-9 wow bounceInUp animated">
+          <div class="page-title">
+            <h2>Edit mes informations</h2>
+          </div>
+          <div class="static-contain">
+            <p> 
+                <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST">
+                    {{ form_widget(form) }}
+                        <br />
+                    
+                    <button  class="button btn-update" title="Valider mon panier" value="{{ 'profile.edit.submit'|trans }}" name="update_cart_action" type="submit"><span><span>{{ 'profile.edit.submit'|trans }}</span></span></button></a>
+                </form>
+            </p>
+          </div>
+        </section>
+        {% include 'UtilisateursBundle:Default:modulesUsed/utilisateursConnecte.html.twig' %}
+      </div>
+    </div>
+  </div>
+  <!--End main-container --> 

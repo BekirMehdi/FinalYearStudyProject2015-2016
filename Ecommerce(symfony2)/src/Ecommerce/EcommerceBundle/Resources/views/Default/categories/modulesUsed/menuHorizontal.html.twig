@@ -1,0 +1,38 @@
+              <ul class="submenu">
+                <li>
+                  <ul class="topnav">
+                    {% for categorie in categories %}
+                      {% set id = categorie.nom %}
+                      {% set autre = "autre" %}
+                      {% if id != autre %}
+                      <li class="level0 nav-6 level-top first parent"> <a class="level-top" href="{{ path('categorieGridBoutiques', { 'categorieGrid' : categorie.id }) }}"> <span>{{ categorie.nom }}</span> </a>
+                        <ul class="level0">
+                          {% for sousCategorie in sousCategories %}
+                            {% set id1 = sousCategorie.categorie %}
+                            {% if id1 == id %}
+                              <li class="level1 first"><a href="{{ path('sousCategorieGridProduits', { 'sousCategorieGrid' : sousCategorie.id }) }}"><span>{{ sousCategorie.nom }}</span></a></li>
+                            {% endif %}  
+                          {% endfor %} 
+                        </ul>  
+                      </li>
+                      {% endif %} 
+                    {% endfor %}
+                    {% for categorie in categories %}
+                      {% set id = categorie.nom %}
+                      {% set autre = "autre" %}
+                      {% if id == autre %}
+                      <li class="level0 nav-6 level-top first parent"> <a class="level-top" href="{{ path('categorieGridBoutiques', { 'categorieGrid' : categorie.id }) }}"> <span>{{ categorie.nom }}</span> </a>
+                        <ul class="level0">
+                          {% for sousCategorie in sousCategories %}
+                            {% set id1 = sousCategorie.categorie %}
+                            {% if id1 == id %}
+                              <li class="level1 first"><a href="{{ path('sousCategorieGridProduits', { 'sousCategorieGrid' : sousCategorie.id }) }}"><span>{{ sousCategorie.nom }}</span></a></li>
+                            {% endif %}  
+                          {% endfor %} 
+                        </ul>  
+                      </li>
+                      {% endif %} 
+                    {% endfor %}
+                  </ul>
+                </li>
+              </ul>

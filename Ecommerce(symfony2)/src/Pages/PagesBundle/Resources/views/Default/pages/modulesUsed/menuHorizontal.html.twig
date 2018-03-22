@@ -1,0 +1,15 @@
+          {% if articles != 0 %}
+            <div class="level0-wrapper custom-menu">
+              <div class="header-nav-dropdown-wrapper clearer">
+              {% for article in articles|slice(0, 4) %}
+                <div class="grid12-5">
+                 
+                  <div class="custom_img"><a href="{{ path('article', { 'id' : article.id }) }}"><img src="{{ asset(article.image.AssetPath) }}" alt="custom img1"></a></div>
+                  <div class="post-date"><i class="icon-calendar"></i> {% if article.datecreation %}{{ article.datecreation|date('Y-m-d H:i:s') }}{% endif %}</div>
+                  <p>{{ article.titre }}</p>
+                  <a href="{{ path('article', { 'id' : article.id }) }}"><button type="button" title="Lire plus" class="learn_more_btn"><span>Lire plus</span></button></a>
+                </div>
+              {% endfor %}
+              </div>
+            </div>
+          {% endif %}  

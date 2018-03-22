@@ -1,0 +1,30 @@
+adminTva:
+    path:     /
+    defaults: { _controller: "EcommerceBundle:TvaAdmin:index" }
+
+adminTva_show:
+    path:     /{id}/show
+    defaults: { _controller: "EcommerceBundle:TvaAdmin:show" }
+
+adminTva_new:
+    path:     /new
+    defaults: { _controller: "EcommerceBundle:TvaAdmin:new" }
+
+adminTva_create:
+    path:     /create
+    defaults: { _controller: "EcommerceBundle:TvaAdmin:create" }
+    requirements: { _method: post }
+
+adminTva_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "EcommerceBundle:TvaAdmin:edit" }
+
+adminTva_update:
+    path:     /{id}/update
+    defaults: { _controller: "EcommerceBundle:TvaAdmin:update" }
+    requirements: { _method: post|put }
+
+adminTva_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "EcommerceBundle:TvaAdmin:delete" }
+    requirements: { _method: post|delete }

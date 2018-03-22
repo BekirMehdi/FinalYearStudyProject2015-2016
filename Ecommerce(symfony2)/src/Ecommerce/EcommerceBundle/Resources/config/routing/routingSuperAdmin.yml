@@ -1,0 +1,3 @@
+SuperAdmin:
+    pattern:  /
+    defaults: { _controller: EcommerceBundle:BoutiquesSuperAdmin:index }

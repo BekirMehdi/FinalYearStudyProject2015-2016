@@ -1,0 +1,30 @@
+adminBoutiquesPremium:
+    path:     /
+    defaults: { _controller: "EcommerceBundle:BoutiquesPremium:index" }
+
+adminBoutiquesPremium_show:
+    path:     /{id}/show
+    defaults: { _controller: "EcommerceBundle:BoutiquesPremium:show" }
+
+adminBoutiquesPremium_new:
+    path:     /new
+    defaults: { _controller: "EcommerceBundle:BoutiquesPremium:new" }
+
+adminBoutiquesPremium_create:
+    path:     /create
+    defaults: { _controller: "EcommerceBundle:BoutiquesPremium:create" }
+    requirements: { _method: post }
+
+adminBoutiquesPremium_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "EcommerceBundle:BoutiquesPremium:edit" }
+
+adminBoutiquesPremium_update:
+    path:     /{id}/update
+    defaults: { _controller: "EcommerceBundle:BoutiquesPremium:update" }
+    requirements: { _method: post|put }
+
+adminBoutiquesPremium_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "EcommerceBundle:BoutiquesPremium:delete" }
+    requirements: { _method: post|delete }

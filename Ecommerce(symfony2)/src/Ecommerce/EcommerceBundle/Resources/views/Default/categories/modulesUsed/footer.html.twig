@@ -1,0 +1,18 @@
+     
+        <div class="col-md-2 col-sm-4">
+          <h4>Categories</h4>
+          {% for categorie in categories|slice(0,6) %}
+            <ul class="links">
+              <li class="first"><a href="{{ path('categorieGridBoutiques', { 'categorieGrid' : categorie.id }) }}" title="{{ categorie.nom }}">{{ categorie.nom }}</a></li>
+            </ul>
+          {% endfor %}
+        </div>
+        <div class="col-md-2 col-sm-4">
+          <h4>Boutiques</h4>
+          {% for boutique in boutiques|slice(0,6) %}
+            <ul class="links">
+              <li class="first"><a title="{{ boutique.nom }}" href="{{ path('presentationBoutique', { 'idB' : boutique.id }) }}">{{ boutique.nom }}</a></li>
+            </ul>
+          {% endfor %}  
+        </div>
+      

@@ -1,0 +1,141 @@
+{% extends "::layout/layoutfront.html.twig" %}
+
+{% block body %}
+  <!-- breadcrumbs -->
+  <div class="breadcrumbs">
+    <div class="container">
+      <div class="row">
+        <ul>
+          <li class="home"> <a href="{{ path('produits') }}" title="Aller à la page d'accueil">Accueil</a><span>&mdash;›</span></li>
+          <li class="category13"><strong> {{ categorie.nom }} </strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- End breadcrumbs --> 
+  <!-- Two columns content -->
+  <div class="main-container col2-left-layout">
+    <div class="main container">
+      <div class="row">
+        <section class="col-main col-sm-9 col-sm-push-3 wow bounceInUp animated">
+          <div class="category-description std">
+            <div class="slider-items-products">
+              <div id="category-desc-slider" class="product-flexslider hidden-buttons">
+                <div class="slider-items slider-width-col1"> 
+                  
+                  <!-- Item -->
+                  <div class="item"> <a href="#x"><img alt="" src="{{ asset(categorie.image.AssetPath) }}"></a>
+                    <div class="cat-img-title cat-bg cat-box">
+                     
+                    </div>
+                  </div>
+                  <!-- End Item -->
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="category-title">
+              <h1>{{ categorie.nom }}</h1>
+          </div>
+          {% if boutiques|length != 0 %}
+          <div class="category-products">
+            <div class="toolbar">
+              <div class="sorter">
+                <div class="view-mode"> <span title="Grid" class="button button-active button-grid">Grid</span> </div>
+              </div>
+              <div class="pager">
+                <div class="pages">
+                  <ul class="pagination">
+                  {{ knp_pagination_render(boutiques) }}
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <ul class="products-grid">
+             {% for boutique in boutiques %}
+              <li class="item col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                <div class="col-item">
+                  <div class="product-image-area"> <a class="product-image" title="Sample Product" href="
+                      <div class="item-title"> <a title=" Sample Product" href="{{ path('presentationBoutique', { 'idB' : boutique.id }) }}"> <img src="{{ asset(boutique.image.AssetPath) }}" class="img-responsive" title="{{ boutique.nom }}" /> </a>
+                    </div>
+                  <div class="info">
+                    <div class="info-inner">
+                      <div class="item-title"> <a title=" Sample Product" href="{{ path('presentationBoutique', { 'idB' : boutique.id }) }}"> {{ boutique.nom }} </a> </div>
+                      <!--item-title-->
+                      <div class="item-content">
+                        <div class="ratings">
+                          
+                        </div>
+                       
+                      </div>
+                      <!--item-content--> 
+                    </div>
+                    <!--info-inner-->
+                    
+                    <div class="clearfix"> </div>
+                  </div>
+                </div>
+              </li>
+            {% endfor %} 
+
+            </ul>
+          </div>
+          {% else %}
+            Aucun boutique
+          {% endif %} 
+        </section>
+        <!-- ----------------------------mehdi----------------------------- --!>
+<aside class="col-left sidebar col-sm-3 col-xs-12 col-sm-pull-9 wow bounceInUp animated">
+  <div class="side-nav-categories">
+            <div class="block-title"> Categories </div>
+            <!--block-title--> 
+            <!-- BEGIN BOX-CATEGORY -->
+            <div class="box-content box-category">
+              <ul>
+                  {% set id = categorie.nom %}
+                   
+                        <li class="active"> <a  href="{{ path('categorieGridBoutiques', { 'categorieGrid' : categorie.id }) }}">{{categorie.nom}}</a> <span class="subDropdown minus"></span>
+                     
+                    {% for sousCategorie in sousCategories %}
+                      {% set id1 = sousCategorie.categorie %}
+                      {% if id1 == id %}
+                        <ul class="level0_415">
+                          <li> <a href="{{ path('sousCategorieGridProduits', { 'sousCategorieGrid' : sousCategorie.id }) }}"> {{ sousCategorie.nom }} </a> 
+                          </li>
+                        </ul>  
+                      {% endif %}   
+                    {% endfor %}   
+                    <!--level1-->
+                  <!--level0--> 
+                </li>
+                <!--level 0-->
+                {% for Categorie in categories %}
+                  {% set id2 = Categorie.nom %}
+                  {% if  id2 != id %}
+                    
+                        <li> <a href="{{ path('categorieGridBoutiques', { 'categorieGrid' : Categorie.id }) }}">{{Categorie.nom}}</a> <span class="subDropdown plus"></span>
+                     
+                    {% for sousCategorie in sousCategories %}
+                      {% set id1 = sousCategorie.categorie %}
+                      {% if id1 == id2 %} 
+                          <ul class="level0_482">
+                            <li> <a href="{{ path('sousCategorieGridProduits', { 'sousCategorieGrid' : sousCategorie.id }) }}"> {{ sousCategorie.nom }} </a></li>
+                          </ul>
+                      {% endif %} 
+                    {% endfor %}    
+                        </li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            </div>
+            <!--box-content box-category--> 
+  </div>   
+  {% render(controller('EcommerceBundle:Panier:panierVertical')) %}
+  {% render(controller('EcommerceBundle:Boutiques:boutiqueVertical')) %}
+</aside>
+      </div>
+    </div>
+  </div>
+  <!-- End Two columns content --> 
+{% endblock %}

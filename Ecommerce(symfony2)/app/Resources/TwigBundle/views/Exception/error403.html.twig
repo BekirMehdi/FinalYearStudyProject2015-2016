@@ -1,0 +1,32 @@
+{% extends "AUTOBIZExpertBundle::layout.html.twig" %}
+{% block title %}
+    {{ parent() }} - Erreur {{ status_code }}
+{% endblock %}
+{% block stylesheets %}
+	{{ parent() }}
+	<style>
+		h1, h4{color:#FF2937!important; font-size:15px;}
+		h1{font-size:55px; padding-bottom:0px; margin-bottom:0px;}
+		h4{margin-top:0px; padding-top:0px;}
+		p{font-size:16px;}
+	</style>
+{% endblock %}
+{% block body %}
+	<div class="mb2 mt2 p1 wrapper">
+		<div class="pt2-s768 mt2 row">
+			<div class="col-s768 mt2 mb1 w33-s480 pl2">
+				<img src="{{ asset('bundles/autobizexpert/imgs/notification.png') }}">
+			</div>
+			<div class=" col-s768 pr1 pl2 pt2">
+
+				<h1>ERREUR 403</h1>
+				<h4>Accès interdit à la ressource.</h4>
+
+				<p>
+				 Vous n'avez pas l'autorisation de visiter cette page.<br>
+				 Merci de vous identifier.
+				</p>
+			</div>
+		</div>
+	</div>
+{% endblock body %}

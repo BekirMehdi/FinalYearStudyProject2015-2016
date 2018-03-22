@@ -1,0 +1,27 @@
+categorieGridBoutiques:
+    pattern:  /categorieGrid/{categorieGrid}
+    defaults: { _controller: EcommerceBundle:Boutiques:categorieGrid }
+
+categorieListeBoutiques:
+    pattern:  /categorieListe/{categorieListe}
+    defaults: { _controller: EcommerceBundle:Boutiques:categorieListe }    
+
+presentationBoutique:
+    pattern:  /boutique/{idB}
+    defaults: { _controller: EcommerceBundle:Boutiques:presentationBoutique }
+
+presentationBoutiquePremium:
+    pattern:  /boutiquePremium/{idBP}
+    defaults: { _controller: EcommerceBundle:Boutiques:presentationBoutiquePremium }    
+
+boutiques:
+    pattern:  /
+    defaults: { _controller: EcommerceBundle:Boutiques:boutiques }
+
+categorieProduits:
+    pattern:  /categorie/{categorie}
+    defaults: { _controller: EcommerceBundle:Boutiques:boutiques }
+  
+rechercheProduits:
+    pattern:  /recherche
+    defaults: { _controller: EcommerceBundle:Boutiques:rechercheTraitement }

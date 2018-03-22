@@ -1,0 +1,36 @@
+{% extends '::layout/layoutAdmin.html.twig' %}
+
+{% block body -%}
+    <div class="new_title center">
+        <h2> Liste des Tva </h2>
+    </div>
+    
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Taux tva</th>
+                <th>Nom</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('adminTva_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.tauxtva }}</td>
+                <td>{{ entity.nom }}</td>
+                <td>
+                    <a href="{{ path('adminTva_show', { 'id': entity.id }) }}"><i class="icon-book"></i></a>
+                    <a href="{{ path('adminTva_edit', { 'id': entity.id }) }}"><i class="icon-edit"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="bouton_button_add">
+        <a href="{{ path('adminTva_new') }}">
+                Créer une nouvelle tva
+        </a>
+    </div>
+    {% endblock %}

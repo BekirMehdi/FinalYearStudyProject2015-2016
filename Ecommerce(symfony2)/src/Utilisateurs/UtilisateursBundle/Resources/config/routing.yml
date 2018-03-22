@@ -1,0 +1,7 @@
+routingUtilisateursSuperAdmin:
+    resource: "@UtilisateursBundle/Resources/config/routing/routingUtilisateursSuperAdmin.yml"
+    prefix: /superAdmin/utilisateurs
+
+routingUtilisateurs:
+    resource: "@UtilisateursBundle/Resources/config/routing/routingUtilisateurs.yml"
+    prefix: /

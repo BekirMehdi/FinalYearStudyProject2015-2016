@@ -1,0 +1,28 @@
+{% if articles != 0 %}
+{% set totalHT = 0 %}
+{% set totalTTC = 0%}
+
+ <div>
+                <div class="top-cart-content arrow_box">
+                  <div class="block-subtitle">Derniers articles ajoutés (s)</div>
+                  <ul id="cart-sidebar" class="mini-products-list">
+                  {% for produit in produits|slice(0, 2) %}
+                    <li class="item even"> <div class="mehdi" ><a class="product-image" title="{{ produit.nom }}" href="{{ path('presentation', { 'id' : produit.id }) }}"><img alt="{{ produit.nom }} " src="{{ asset(produit.image.AssetPath) }}" width="80"></a></div>
+                      <div class="detail-item">
+                        <div class="product-details"> <a href="{{ path('supprimer', { 'id' : produit.id }) }}" title="Supprimer cet article" onClick="" class="glyphicon glyphicon-remove">&nbsp;</a> <a class="glyphicon glyphicon-pencil" title="Modifier l'article" href="{{ path('panier') }}">&nbsp;</a>
+                          <p class="product-name"> <a href="{{ path('presentation', { 'id' : produit.id }) }}" title="afficher produit">{{ produit.nom }}</a> </p>
+                        </div>
+                        <div class="product-details-bottom"> <span class="price">{{ produit.prixremise * panier[produit.id] }} dt</span> <span class="title-desc">Qty:</span> <strong>{{ panier[produit.id] }}</strong> </div>
+                      </div>
+                    </li>
+                     {% set totalHT = totalHT + (produit.prixremise * panier[produit.id]) %}
+                   {% endfor %}
+                  </ul>
+                  <div class="top-subtotal">Sous-Total: <span class="price">{{ totalHT }} dt</span></div>
+                  <div class="actions">
+                    <a href="{{ path('produits') }}"><button class="btn-checkout" type="button"><span>Checkout</span></button></a>
+                    <a href="{{ path('panier') }}"><button class="view-cart" type="button"><span>Voir le panier</span></button></a>
+                  </div>
+                </div>
+              </div>
+{% endif %}              

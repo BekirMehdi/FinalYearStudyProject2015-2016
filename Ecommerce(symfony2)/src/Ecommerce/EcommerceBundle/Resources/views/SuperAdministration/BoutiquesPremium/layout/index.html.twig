@@ -1,0 +1,48 @@
+{% extends '::layout/layoutSuperAdmin.html.twig' %}
+
+{% block body -%}
+    <div class="new_title center">
+              <h2> Listes des boutique Premium </h2>
+            </div>
+
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>&nbsp;</th>
+                <!--<th>Id</th>--!>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Actions</th>
+                <th>Telephone</th>
+                <th>Adresse</th>
+                <th>Date_creation</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td class="image"><a class="product-image" title="{{ entity.nom }}" href="{{ path('presentationBoutiquePremium', { 'idBP' : entity.id }) }}"><img width="75" alt="{{ entity.nom }}" src="{{ asset(entity.image.AssetPath) }}"></a></td>
+                <!--<td><a href="{{ path('adminBoutiquesPremium_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>--!>
+                <td>{{ entity.nom }}</td>
+                <td>{{ entity.description }}</td>
+                <td>{{ entity.telephone }}</td>
+                <td>{{ entity.adresse }}</td>
+                <td>{% if entity.datecreation %}{{ entity.datecreation|date('Y-m-d H:i:s') }}{% endif %}</td>
+                 <td>
+                    <a href="{{ path('adminBoutiquesPremium_show', { 'id': entity.id }) }}"><i class="icon-book"></i></a>
+                     <a href="{{ path('adminBoutiquesPremium_edit', { 'id': entity.id }) }}"><i class="icon-edit"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="bouton_button_add">
+            <a href="{{ path('adminBoutiquesPremium_new') }}">
+                Créer une nouvelle boutique
+            </a>
+    </div>
+        
+    </ul>
+
+    {% endblock %}

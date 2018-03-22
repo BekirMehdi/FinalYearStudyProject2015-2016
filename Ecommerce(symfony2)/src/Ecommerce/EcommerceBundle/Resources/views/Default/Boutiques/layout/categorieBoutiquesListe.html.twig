@@ -1,0 +1,76 @@
+{% extends "::layout/layoutfront.html.twig" %}
+
+{% block body %}
+  <!-- breadcrumbs -->
+  <div class="breadcrumbs">
+    <div class="container">
+      <div class="row">
+        <ul>
+          <li class="home"> <a href="index.html" title="Go to Home Page">Home</a><span>&mdash;›</span></li>
+          <li class=""> <a href="grid.html" title="Go to Home Page">Women</a><span>&mdash;›</span></li>
+          <li class="category13"><strong>     {% for boutique in boutiques|slice(0, 1) %}
+                                                {{ boutique.categorie.nom }}
+                                              {% endfor %}
+                                  </strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- End breadcrumbs --> 
+  <!-- Two columns content -->
+  <div class="main-container col2-left-layout">
+    <div class="main container">
+      <div class="row">
+        <section class="col-main col-sm-9 col-sm-push-3 wow bounceInUp animated">
+        {% for boutique in boutiques|slice(0, 1) %}
+          <div class="category-description std">
+            <div class="category-image"><img src="{{ asset(boutique.categorie.image.AssetPath) }}" title=" {{boutique.nom}} " title="Sofas "> </div>
+          </div>
+          <div class="category-title">
+            <h1>{{ boutique.categorie.nom }}</h1>
+          </div>
+        {% endfor %}
+          <div class="category-products">
+            <div class="toolbar">
+              <div class="sorter">
+              {% for boutique in boutiques|slice(0, 1) %}
+                <div class="view-mode"> <a href="{{ path('categorieGridBoutiques', { 'categorieGrid' : boutique.categorie.id }) }}" title="Grid" class="button button-grid">Grid</a>&nbsp; <span title="List" class="button button-active button-list">List</span>&nbsp; </div>
+              {% endfor %}  
+              </div>
+              <div id="sort-by">
+                <a class="button-asc left" href="#" title="Set Descending Direction"><span class="glyphicon glyphicon-arrow-up"></span></a> </div>
+              <div class="pager">
+                <div class="pages">>
+                  <ul class="pagination">
+                   {{ knp_pagination_render(boutiques) }}
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <ol id="products-list" class="products-list">
+            {% if boutiques|length != 0 %}
+            {% for boutique in boutiques %}
+              <li class="item odd">
+                <div class="offer-banner-section wow bounceInUp animated">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-lg-4 col-xs-12 col-sm-4"><a href="#"><img alt="offer banner1" src="{{ asset(boutique.image.AssetPath) }}"></a>
+                        <div class="overlay"><a class="info" href="#">{{boutique.nom}}</a></div>
+                      </div>     
+                    </div>
+                  </div>
+                </div>
+              </li>
+          {% endfor %}   
+            </ol>
+          </div>
+        {% else %}
+            Aucun boutique
+          {% endif %}  
+        </section>
+          {% render(controller('EcommerceBundle:Categories:menuListeGrid')) %}
+      </div>
+    </div>
+  </div>
+  <!-- End Two columns content --> 
+{% endblock %}  

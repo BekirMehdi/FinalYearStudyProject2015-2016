@@ -1,0 +1,29 @@
+{% trans_default_domain 'FOSUserBundle' %}
+<div class="breadcrumbs">
+    <div class="container">
+      <div class="row">
+        <ul>
+          <li class="home"> <a title="Aller à la page d'accueil" href="{{ path('produits') }}">Accueil</a><span>&mdash;›</span></li>
+          <li class="category13"><strong>Mes informations</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- main-container -->
+  <div class="main-container col2-right-layout">
+    <div class="main container">
+      <div class="row">
+        <section class="col-main col-sm-9 wow bounceInUp animated">
+          <div class="page-title">
+            <h2>Mes informations</h2>
+          </div>
+          <div class="static-contain">
+            <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
+            <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+          </div>
+        </section>
+        {% include 'UtilisateursBundle:Default:modulesUsed/utilisateursConnecte.html.twig' %}
+      </div>
+    </div>
+  </div>
+  <!--End main-container --> 

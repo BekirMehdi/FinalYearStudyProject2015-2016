@@ -1,0 +1,21 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: app
+    database_user: root
+    database_password: null
+    mailer_transport: smtp
+    mailer_host: smtp.gmail.com
+    mailer_user: null
+    mailer_password: null
+    mailer_encryption: ~
+    locale: fr
+    secret: ThisTokenIsNotSoSecretChangeIt
+twig:
+    globals:
+        telephone: '50 390 251'
+        fax: '50 390 251'
+        adresse: 'Bizerte 7000 - centre ville'
+        pathDefault: 'http://localhost/ecommerce/web/'

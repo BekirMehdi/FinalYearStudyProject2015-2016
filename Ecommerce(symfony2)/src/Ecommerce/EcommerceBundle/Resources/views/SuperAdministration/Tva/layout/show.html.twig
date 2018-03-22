@@ -1,0 +1,41 @@
+{% extends '::layout/layoutSuperAdmin.html.twig' %}
+
+{% block body -%}
+<div class="new_title center">
+    <h2>Tva</h2>
+</div>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Multiplicate</th>
+                <th>Nom</th>
+                <th>Valeur</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ entity.id }}</td>
+                <td>{{ entity.multiplicate }}</td>
+                <td>{{ entity.nom }}</td>
+                <td>{{ entity.valeur }}</td>
+            </tr>                                 
+        </tbody>
+    </table>
+     <br>
+    <div class="bouton_button_return">
+        <a href="{{ path('adminTva') }}">
+            Retour à la liste
+        </a>
+    </div>    
+      
+   <br>
+    <div class="bouton_button_add">
+        <a href="{{ path('adminTva_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </div>
+    <br>
+    <div>{{ form(delete_form) }}</div>
+</ul>
+{% endblock %}

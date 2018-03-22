@@ -1,0 +1,40 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+ 
+  <div class="breadcrumbs">
+    <div class="container">
+      <div class="row">
+        <ul>
+          <li class="home"> <a title="Aller à la page d'accueil" href="{{ path('produits') }}">Accueil</a><span>&mdash;›</span></li>
+          <li class="category13"><strong>Inscription</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- main-container -->
+  <div class="main-container col2-right-layout major">
+    <div class="main container">
+      <div class="row">
+        <section class="col-main col-sm-9 wow bounceInUp animated">
+          <div class="page-title">
+            <h2>Pas encore inscrit ?</h2>
+          </div>
+          <em>nous vous invitons à vous inscrire<br /> </em>
+          <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
+                        {{ form_widget(form) }}
+                        <br />
+                <div style="clear:both"></div>      
+                <div class="buttons-set eboutique">
+                    <button type="submit" title="Submit" class="button submit"> <span> {{ 'registration.submit'|trans }} </span> </button>
+                </div>
+          </form>
+        </section>
+        <aside class="col-right sidebar col-sm-3 wow bounceInUp animated">
+          <div class="block block-company">
+            <img alt="offer banner1" src="{{ asset('frontoffice/images/inscrit.jpg')}}">
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+  <!--End main-container --> 

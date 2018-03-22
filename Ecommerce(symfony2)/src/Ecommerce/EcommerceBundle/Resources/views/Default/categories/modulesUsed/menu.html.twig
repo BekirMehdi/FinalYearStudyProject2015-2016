@@ -1,0 +1,58 @@
+ <div class="magik-slideshow wow bounceInUp animated" id="magik-slideshow">
+    <div class="container">
+      <div class="row">
+        <div class="LHS-nav col-lg-3 col-md-4">
+          <div id="magik-verticalmenu" class="block magik-verticalmenu">
+            <div class="nav-title"> <span>Categories Boutiques</span> </div>
+            <div class="nav-content">
+              <div class="navbar navbar-inverse">
+                <div id="verticalmenu" class="verticalmenu" role="navigation">
+                  <div class="navbar">
+                    <div class="collapse navbar-collapse navbar-ex1-collapse">
+                      <ul class="nav navbar-nav verticalmenu">
+                      {% for categorie in categories %}
+                      {% set id = categorie.nom %}
+                      {% set autre = "autre" %}
+                      {% if id != autre %}
+                        <li class=" parent dropdown "> <a href="{{ path('categorieGridBoutiques', { 'categorieGrid' : categorie.id }) }}" class="dropdown-toggle"><span class="menu-title">{{ categorie.nom }}</span><b ></b></a> 
+                         
+                        </li>   
+                      {% endif %}           
+                      {% endfor %}  
+                      {% for categorie in categories %}
+                      {% set id = categorie.nom %}
+                      {% set autre = "autre" %}
+                        {% if id == autre %}
+                        <li class=" parent dropdown "> <a href="{{ path('categorieGridBoutiques', { 'categorieGrid' : categorie.id }) }}" class="dropdown-toggle"><span class="menu-title">{{ categorie.nom }}</span><b class="round-arrow"></b></a> 
+                        
+                        </li> 
+                      {% endif %} 
+                      {% endfor %}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-sm-12 col-md-8">
+          <div id='rev_slider_4_wrapper' class='rev_slider_wrapper fullwidthbanner-container' >
+            <div id='rev_slider_4' class='rev_slider fullwidthabanner'>
+             <ul>
+               {% include '::modulesUsed/navigatio.html.twig' %}
+             </ul>
+              <div class="tp-bannertimer"></div>
+            </div>
+          </div>
+         
+        </div>
+        <aside class="col-xs-12 col-sm-12 col-md-3">
+          <div class="RHS-banner">
+            <div class="add"><a href="#"><img alt="banner-img" src="{{ asset('frontoffice/images/sal.jpg')}}"></a></div>
+            <div class="add"><a href="#"><img alt="banner-img" src="{{ asset('frontoffice/images/bal.jpg')}}"></a></div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>

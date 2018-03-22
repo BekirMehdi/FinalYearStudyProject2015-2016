@@ -1,0 +1,29 @@
+SuperAdminBoutiques:
+    pattern:  /
+    defaults: { _controller: "EcommerceBundle:BoutiquesSuperAdmin:index" }
+
+SuperAdminBoutiques_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "EcommerceBundle:BoutiquesSuperAdmin:show" }
+
+SuperAdminBoutiques_new:
+    pattern:  /new
+    defaults: { _controller: "EcommerceBundle:BoutiquesSuperAdmin:new" }
+
+SuperAdminBoutiques_create:
+    pattern:  /create
+    defaults: { _controller: "EcommerceBundle:BoutiquesSuperAdmin:create" }
+    requirements: { _method: post }
+
+SuperAdminBoutiques_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "EcommerceBundle:BoutiquesSuperAdmin:edit" }
+
+SuperAdminBoutiques_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "EcommerceBundle:BoutiquesSuperAdmin:update" }
+    requirements: { _method: post|put }
+SuperAdminBoutiques_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "EcommerceBundle:BoutiquesSuperAdmin:delete" }
+    requirements: { _method: post|delete }

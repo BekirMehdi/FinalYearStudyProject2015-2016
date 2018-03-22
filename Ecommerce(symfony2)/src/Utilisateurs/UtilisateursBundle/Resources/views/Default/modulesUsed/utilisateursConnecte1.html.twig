@@ -1,0 +1,7 @@
+ {% if is_granted('ROLE_SUPER_ADMIN') %}
+ <div class="wishlist"><a title="My Wishlist"  href="{{ path('SuperAdmin') }}"><span class="hidden-xs">Super Admin</span></a></div>
+ {% elseif is_granted('ROLE_ADMIN') %}
+  <div class="myaccount"><a title="My Account" href="{{ path('admin') }}"><span class="hidden-xs">Créer Votre Boutique</span></a></div>
+  {% elseif is_granted('ROLE_USER') %}
+  {% endif %}
+ <div class="check"><a title="Deconnexion" href="{{ path('fos_user_security_logout') }}"><span class="hidden-xs">Deconnexion</span></a></div>

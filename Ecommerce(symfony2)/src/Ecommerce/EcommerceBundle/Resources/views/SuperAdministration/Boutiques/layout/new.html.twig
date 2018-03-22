@@ -1,0 +1,101 @@
+{% extends '::layout/layoutSuperAdmin.html.twig' %}
+
+{% block body -%}
+<div class="new_title center">
+    <h1>creation de Boutique </h1>
+</div>
+<div class="span3">
+    {{ form(form) }}
+     <div class="bouton_button_return">
+        <a href="{{ path('SuperAdminBoutiques') }}">
+            Retour à la liste
+        </a>
+    </div>
+</div>
+<div id="map" class="span5" style="margin-top:10px;"></div>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+ <script type="text/javascript">
+        var markers = [];
+		var geocoder = new google.maps.Geocoder();
+
+		function geocodePosition(pos) {
+		  geocoder.geocode({
+		    latLng: pos
+		  }, function(responses) {
+		    if (responses && responses.length > 0) {
+		      updateMarkerAddress(responses[0].formatted_address);
+		    } else {
+		      updateMarkerAddress('Cannot determine address at this location.');
+		    }
+		  });
+		}
+
+		function updateMarkerStatus(str) {
+		  document.getElementById('markerStatus').innerHTML = str;
+		}
+
+		function updateMarkerPosition(latLng) {
+		  document.getElementById('info').innerHTML = [
+		    latLng.lat(),
+		    latLng.lng()
+		  ].join(', ');
+		}
+
+		function updateMarkerAddress(str) {
+		  document.getElementById('address').innerHTML = str;
+		}
+
+		function initialize() {
+		  var latLng = new google.maps.LatLng(33.886917, 9.537499);
+		  var map = new google.maps.Map(document.getElementById('map'), {
+		    zoom: 6,
+		    center: latLng,
+		    mapTypeId: google.maps.MapTypeId.ROADMAP
+		  });
+
+		  google.maps.event.addListener(map, 'click', function(event) {
+		  
+		  addMarker(event.latLng, map);
+		  });
+
+		
+		}
+
+		function addMarker(location, map) {
+		  for (var i = 0; i < markers.length; i++) {
+             markers[i].setMap(null);
+          }
+		  var marker = new google.maps.Marker({
+		    position: location,
+		    map: map
+		  });
+
+		  var latitud=marker.getPosition().lat();
+		  var lng=marker.getPosition().lng();
+
+		  document.getElementById("ecommerce_ecommercebundle_boutiques_atitud").value = latitud;
+		  document.getElementById("ecommerce_ecommercebundle_boutiques_lng").value = lng;
+		  
+		  markers.push(marker);
+		  
+		}
+
+
+		// Onload handler to fire off the app.
+		google.maps.event.addDomListener(window, 'load', initialize);
+</script> 
+
+<style>
+#map
+{
+    height: 400px;
+}
+
+#ecommerce_ecommercebundle_boutiques_atitud , #ecommerce_ecommercebundle_boutiques_lng
+{
+	display:none
+}
+</style>
+   
+
+{% endblock %}

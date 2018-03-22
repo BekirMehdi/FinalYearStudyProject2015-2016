@@ -1,0 +1,19 @@
+{% extends '::layout/layoutSuperAdmin.html.twig' %}
+
+{% block body -%}
+<div class="new_title center">
+    <h2>modification d'article</h2>
+</div>
+    {{ form(edit_form) }}
+
+
+    <div class="bouton_button_return">
+         <a href="{{ path('adminArticles') }}">
+            Retour à la liste
+        </a>
+    </div> </br>
+
+    <div>{{ form(delete_form) }}</div>
+
+{% endblock %}
+

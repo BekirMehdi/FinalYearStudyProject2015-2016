@@ -1,0 +1,11 @@
+SuperAdminUtilisateurs:
+    pattern:  /
+    defaults: { _controller: "UtilisateursBundle:UtilisateursSuperAdmin:index" }
+
+SuperAdminAdressesUtilisateurs:
+    pattern:  /{id}/adresses
+    defaults: { _controller: "UtilisateursBundle:UtilisateursSuperAdmin:utilisateur" }
+
+SuperAdminFacturesUtilisateurs:
+    pattern:  /{id}/factures
+    defaults: { _controller: "UtilisateursBundle:UtilisateursSuperAdmin:utilisateur" }

@@ -1,0 +1,94 @@
+{% extends "::layout/layoutfront.html.twig" %}
+{% block body %}
+<div class="breadcrumbs">
+    <div class="container">
+      <div class="row">
+        <ul>
+          <li class="home"> <a title="Aller à la page d'accueil" href="{{ path('produits') }}">Accueil</a><span>&mdash;›</span></li>
+          <li class="category13"><strong>Validation panier</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="main-container col2-right-layout">
+    <div class="main container">
+      <div class="row">
+        <section class="col-main col-sm-9 wow bounceInUp animated">
+          <div class="my-account">
+            <div class="page-title">
+              <h2>Valider mon panier</h2>
+            </div>
+            <div class="dashboard">
+        
+              <div class="recent-orders">
+               
+                <div class="table-responsive">
+                  <table class="data-table" id="my-orders-table">
+                    
+                    <thead>
+                      <tr class="first last">
+                        <th>Références</th>
+                        <th>Quantité</th>
+                        <th>Prix unitaire</th>
+                        <th><span class="nobr">Total HT</span></th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                    {% for produit in commande.commande.produit %}
+                      <tr class="first odd">
+                        <td>{{ produit.reference }}</td>
+                        <td>{{ produit.quantite }}</td>
+                        <td>{{ produit.prixHT }} dt</td>
+                        <td><span style="color:green">{{ produit.prixHT * produit.quantite }} dt</span></td>
+                       
+                      </tr>
+                    {% endfor %} 
+                    <th>Total TTC de commande</th>
+                     <td><em style="color:red">{{ commande.commande.prixTTC}} dt</em></td> 
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="box-account">
+                <div class="page-title">
+                  <h2>Mes adresses</h2>
+                </div>
+                <div class="col2-set">
+                  <div class="col-1">
+                    <h5>Adresse de livraison</h5>
+                    <p> {{ commande.commande.livraison.prenom }} {{ commande.commande.livraison.nom }}<br>
+                      {{ commande.commande.livraison.adresse }}<br>
+                      {{ commande.commande.livraison.cp }} {{ commande.commande.livraison.ville }} - {{ commande.commande.livraison.pays }}
+
+                       </p>
+                  </div>
+                  <div class="col-2">
+                    <h5>Adresse de facturation</h5>
+                    <p> {{ commande.commande.facturation.prenom }} {{ commande.commande.facturation.nom }}<br>
+                      {{ commande.commande.facturation.adresse }}<br>
+                      {{ commande.commande.facturation.cp }} {{ commande.commande.facturation.ville }} - {{ commande.commande.facturation.pays }}
+                  </div>
+                </div>
+                <div class="col2-set">
+                  <div class="col-1">
+                    <a href="{{ path('livraison') }}"><button type="submit" title="Retour" class="button button-compare"><span>Retour</span></button></a>
+                  </div>
+                  <div class="col-2">
+                    <form action="{{ path('validationCommande', { 'id' : commande.id }) }}" method="POST"/>
+                      <input name="token" type="hidden" value="{{ commande.commande.token }}" />
+                      <input name="prix" type="hidden" value="{{ commande.commande.prixTTC }}" />
+                      <input name="date" type="hidden" value="{{ commande.date|date('dmyhms') }}" />
+                      <button  class="button create-account" type="submit"><span>Livrer</span></button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        {% include 'UtilisateursBundle:Default:modulesUsed/utilisateursConnecte.html.twig' %}   
+      </div>
+    </div>
+  </div>
+{% endblock %}  

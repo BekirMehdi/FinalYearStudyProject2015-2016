@@ -1,0 +1,16 @@
+{% extends '::layout/layoutAdmin.html.twig' %}
+
+{% block body -%}
+<div class="new_title center">
+    <h2>modification de  Tva</h2>
+</div>
+      {{ form(edit_form) }}
+	<div class="bouton_button_return">
+         <a href="{{ path('adminTva') }}">
+            Retour à la liste
+        </a>
+    </div> </br>
+
+    <div>{{ form(delete_form) }}</div>
+  
+{% endblock %}

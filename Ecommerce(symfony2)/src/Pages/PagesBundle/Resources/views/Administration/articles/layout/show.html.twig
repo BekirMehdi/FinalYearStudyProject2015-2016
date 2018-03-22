@@ -1,0 +1,40 @@
+{% extends '::layout/layoutSuperAdmin.html.twig' %}
+
+{% block body -%}
+<div class="new_title center">
+    <h2>Articles</h2>
+</div>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Contenu</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ entity.titre }}</td>
+                <td>{{ entity.description }}</td>
+                <td>{{ entity.contenu }}</td>
+
+            </tr>
+        </tbody>    
+    </table>
+
+    <div class="bouton_button_return">
+         <a href="{{ path('adminArticles') }}">
+            Retour à la liste
+        </a>
+    </div> 
+  
+<br>
+    <div class="bouton_button_add">
+        <a href="{{ path('adminArticles_edit', { 'id': entity.id }) }}">
+            modifier
+        </a>
+    </div>
+    <br>
+    <div>{{ form(delete_form) }}</div>
+
+{% endblock %}

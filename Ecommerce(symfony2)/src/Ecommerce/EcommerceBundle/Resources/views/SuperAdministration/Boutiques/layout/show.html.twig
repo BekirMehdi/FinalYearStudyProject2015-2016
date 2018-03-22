@@ -1,0 +1,47 @@
+{% extends '::layout/layoutSuperAdmin.html.twig' %}
+
+{% block body -%}
+<div class="new_title center">
+    <h1>Boutiques</h1>
+</div>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>&nbsp;</th>
+                <!--<th>Id</th>--!>
+                <th>Nom</th>
+                <th>Description</th>
+                 <th>Telephone</th>
+                <th>Adresse</th>
+                <th>Date_creation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="image"><a class="product-image" title="{{ entity.nom }}" href="{{ path('presentationBoutique', { 'idB' : entity.id }) }}"><img width="75" alt="{{ entity.nom }}" src="{{ asset(entity.image.AssetPath) }}"></a></td>
+                <!--<td><{{ entity.id }}</td>--!>
+                <td>{{ entity.nom }}</td>
+                <td>{{ entity.description }}</td>
+                <td>{{ entity.telephone }}</td>
+                <td>{{ entity.adresse }}</td>
+                <td>{% if entity.datecreation %}{{ entity.datecreation|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>    
+    </table>
+
+    <div class="bouton_button_return">
+         <a href="{{ path('SuperAdminBoutiques') }}">
+            Retour à la liste
+        </a>
+    </div> 
+  
+<br>
+    <div class="bouton_button_add">
+        <a href="{{ path('SuperAdminBoutiques_edit', { 'id': entity.id }) }}">
+            modifier
+        </a>
+    </div>
+    <br>
+    <div>{{ form(delete_form) }}</div>
+
+{% endblock %}
